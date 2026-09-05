@@ -1,0 +1,9 @@
+supplier,grade,subtype,nco_wt_pct,nominal_functionality,viscosity_cp,viscosity_temperature_c,storage_temperature_c,source_id,evidence_locator
+BASF,Lupranate 227,monomeric_MDI,32.1,2.0,15,25,20-35,MFR_BASF_LUPRANATE_RANGE,Official BASF Lupranate product-family table
+BASF,Lupranate MI,monomeric_MDI,33.5,2.0,15,25,23-30,MFR_BASF_LUPRANATE_RANGE,Official BASF Lupranate product-family table
+BASF,Lupranate 5143,carbodiimide_modified_MDI,29.2,2.2,40,25,22-30,MFR_BASF_LUPRANATE_RANGE,Official BASF Lupranate product-family table
+BASF,Lupranate M20,polymeric_MDI,31.5,2.7,200,25,15-35,MFR_BASF_LUPRANATE_RANGE,Official BASF Lupranate product-family table
+BASF,Lupranate 5020,MDI_prepolymer,9.5,2.0,2500,25,25-35,MFR_BASF_LUPRANATE_RANGE,Official BASF Lupranate product-family table
+BASF,Lupranate 5025,MDI_prepolymer,12.9,2.0,2250,25,20-30,MFR_BASF_LUPRANATE_RANGE,Official BASF Lupranate product-family table
+BASF,Lupranate 5030,MDI_prepolymer,18.9,2.0,1130,25,25-35,MFR_BASF_LUPRANATE_RANGE,Official BASF Lupranate product-family table
+BASF,Lupranate 5040,MDI_prepolymer,26.3,2.1,140,25,25-35,MFR_BASF_LUPRANATE_RANGE,Official BASF Lupranate product-family table
