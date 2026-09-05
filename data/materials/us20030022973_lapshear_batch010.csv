@@ -1,0 +1,14 @@
+record_id,source_id,sample_id,lap_shear_30min_psi,lap_shear_2h_psi,lap_shear_4h_psi,lap_shear_24h_psi,method_id,evidence_locator,notes
+US2003_LS_4A,PAT_US20030022973A1,4A,51,147,382,377,M10_LAPSHEAR,Table 8,Time-resolved strength development on HPL / particle board per source method.
+US2003_LS_5A,PAT_US20030022973A1,5A,43,98,218,345,M10_LAPSHEAR,Table 8,Time-resolved strength development on HPL / particle board per source method.
+US2003_LS_6A,PAT_US20030022973A1,6A,10,24,108,329,M10_LAPSHEAR,Table 8,Time-resolved strength development on HPL / particle board per source method.
+US2003_LS_7A,PAT_US20030022973A1,7A,12,38,178,365,M10_LAPSHEAR,Table 8,Time-resolved strength development on HPL / particle board per source method.
+US2003_LS_4B,PAT_US20030022973A1,4B,31,154,306,387,M10_LAPSHEAR,Table 8,Time-resolved strength development on HPL / particle board per source method.
+US2003_LS_5B,PAT_US20030022973A1,5B,9,169,402,487,M10_LAPSHEAR,Table 8,Time-resolved strength development on HPL / particle board per source method.
+US2003_LS_6B,PAT_US20030022973A1,6B,15,146,400,482,M10_LAPSHEAR,Table 8,Time-resolved strength development on HPL / particle board per source method.
+US2003_LS_7B,PAT_US20030022973A1,7B,25,108,282,516,M10_LAPSHEAR,Table 8,Time-resolved strength development on HPL / particle board per source method.
+US2003_LS_10A,PAT_US20030022973A1,10A,132,316,436,425,M10_LAPSHEAR,Table 13,Time-resolved strength development on HPL / particle board per source method.
+US2003_LS_10B,PAT_US20030022973A1,10B,63,240,407,436,M10_LAPSHEAR,Table 13,Time-resolved strength development on HPL / particle board per source method.
+US2003_LS_10C,PAT_US20030022973A1,10C,14,206,308,327,M10_LAPSHEAR,Table 13,Time-resolved strength development on HPL / particle board per source method.
+US2003_LS_10D,PAT_US20030022973A1,10D,10,81,174,212,M10_LAPSHEAR,Table 13,Time-resolved strength development on HPL / particle board per source method.
+US2003_LS_10E,PAT_US20030022973A1,10E,6,58,97,102,M10_LAPSHEAR,Table 13,Time-resolved strength development on HPL / particle board per source method.

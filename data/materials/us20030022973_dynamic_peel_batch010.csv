@@ -1,0 +1,14 @@
+record_id,source_id,sample_id,mm_min_at_55c,mm_min_at_50c,mm_min_at_40c,mm_min_at_30c,method_id,evidence_locator,missing_value_semantics
+US2003_DPEEL_4A,PAT_US20030022973A1,4A,58,34,9,0,M10_DYNPEEL,Table 7,blank means source dash/not reported; explicit zero remains 0
+US2003_DPEEL_5A,PAT_US20030022973A1,5A,211,158,71,22,M10_DYNPEEL,Table 7,blank means source dash/not reported; explicit zero remains 0
+US2003_DPEEL_6A,PAT_US20030022973A1,6A,302,209,82,27,M10_DYNPEEL,Table 7,blank means source dash/not reported; explicit zero remains 0
+US2003_DPEEL_7A,PAT_US20030022973A1,7A,642,350,113,46,M10_DYNPEEL,Table 7,blank means source dash/not reported; explicit zero remains 0
+US2003_DPEEL_4B,PAT_US20030022973A1,4B,96,48,12,0,M10_DYNPEEL,Table 7,blank means source dash/not reported; explicit zero remains 0
+US2003_DPEEL_5B,PAT_US20030022973A1,5B,203,97,14,5,M10_DYNPEEL,Table 7,blank means source dash/not reported; explicit zero remains 0
+US2003_DPEEL_6B,PAT_US20030022973A1,6B,404,253,98,21,M10_DYNPEEL,Table 7,blank means source dash/not reported; explicit zero remains 0
+US2003_DPEEL_7B,PAT_US20030022973A1,7B,355,252,73,32,M10_DYNPEEL,Table 7,blank means source dash/not reported; explicit zero remains 0
+US2003_DPEEL_10A,PAT_US20030022973A1,10A,208,121,28,2,M10_DYNPEEL,Table 12,blank means source dash/not reported; explicit zero remains 0
+US2003_DPEEL_10B,PAT_US20030022973A1,10B,92,48,14,1,M10_DYNPEEL,Table 12,blank means source dash/not reported; explicit zero remains 0
+US2003_DPEEL_10C,PAT_US20030022973A1,10C,,503,125,23,M10_DYNPEEL,Table 12,blank means source dash/not reported; explicit zero remains 0
+US2003_DPEEL_10D,PAT_US20030022973A1,10D,,,,172,M10_DYNPEEL,Table 12,blank means source dash/not reported; explicit zero remains 0
+US2003_DPEEL_10E,PAT_US20030022973A1,10E,,,,,M10_DYNPEEL,Table 12,blank means source dash/not reported; explicit zero remains 0
