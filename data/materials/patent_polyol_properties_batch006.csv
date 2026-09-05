@@ -1,0 +1,5 @@
+material_id,grade,polyol_composition,oh_value_mg_koh_g,acid_value_mg_koh_g,water_wt_pct,viscosity_cp,viscosity_temperature_c,source_id,evidence_locator
+MAT_PAT_PADDDA_HDO_B,Polyol B,PA/DDDA/HDO,35,3.0,0.04,56200,70,PAT_US20060205909A1,Table 6
+MAT_PAT_PADDDA_NPG_CARDURA_C,Polyol C,PA/DDDA/NPG/Cardura E-10,48.3,0.32,0.02,55600,100,PAT_US20060205909A1,Table 6
+MAT_PAT_PADDDA_DEG_CARDURA_D,Polyol D,PA/DDDA/DEG/Cardura E-10,27,0.36,0.01,10400,70,PAT_US20060205909A1,Table 6
+MAT_PAT_LEXOREZ_1130_30P,LEXOREZ 1130-30P,"1,6-HDO adipate",31,,,,,PAT_US20060205909A1,Table 3 + description
