@@ -1,0 +1,10 @@
+polyester_id,source_id,patent_example_class,acid_code,acid_name,acid_mol_pct,diol_code,diol_name,diol_mol_pct,hydroxyl_number_mg_koh_g,acid_number_mg_koh_g,melting_point_c,oh_method,acid_method,melting_method,evidence_locator
+HP_a,PAT_US20100105831A1,inventive,TD,tridecanedioic_acid,100,PD,"1,5-pentanediol",100,29,0.6,64,DIN 53240-2,DIN EN ISO 2114,DSC second heating,US20100105831A1 / EP2167600 Table 1
+HP_b,PAT_US20100105831A1,inventive,UD,undecanedioic_acid,100,PG,"1,3-propanediol",100,30,1.0,67,DIN 53240-2,DIN EN ISO 2114,DSC second heating,US20100105831A1 / EP2167600 Table 1
+HP_c,PAT_US20100105831A1,inventive,TD,tridecanedioic_acid,100,PG,"1,3-propanediol",100,30,0.3,75,DIN 53240-2,DIN EN ISO 2114,DSC second heating,US20100105831A1 / EP2167600 Table 1
+HP_d,PAT_US20100105831A1,inventive,UD,undecanedioic_acid,100,PD,"1,5-pentanediol",100,31,0.4,58,DIN 53240-2,DIN EN ISO 2114,DSC second heating,US20100105831A1 / EP2167600 Table 1
+HP_e,PAT_US20100105831A1,inventive,AZ,azelaic_acid,100,PG,"1,3-propanediol",100,30,0.4,51,DIN 53240-2,DIN EN ISO 2114,DSC second heating,US20100105831A1 / EP2167600 Table 1
+HP_f,PAT_US20100105831A1,inventive,AZ,azelaic_acid,100,PD,"1,5-pentanediol",100,30,0.8,49,DIN 53240-2,DIN EN ISO 2114,DSC second heating,US20100105831A1 / EP2167600 Table 1
+HP_Va,PAT_US20100105831A1,comparative,DD,dodecanedioic_acid,100,BD,"1,4-butanediol",100,30,0.2,68,DIN 53240-2,DIN EN ISO 2114,DSC second heating,US20100105831A1 / EP2167600 Table 1
+HP_Vb,PAT_US20100105831A1,comparative,SB,sebacic_acid,100,HD,"1,6-hexanediol",100,30,0.5,62,DIN 53240-2,DIN EN ISO 2114,DSC second heating,US20100105831A1 / EP2167600 Table 1
+HP_Vc,PAT_US20100105831A1,comparative,AD,adipic_acid,100,HD,"1,6-hexanediol",100,30,0.7,55,DIN 53240-2,DIN EN ISO 2114,DSC second heating,US20100105831A1 / EP2167600 Table 1

@@ -1,0 +1,2 @@
+audit_id,grade,property,temperature_c,older_source_id,older_source_version,older_value_pa_s,newer_source_id,newer_source_version,newer_value_pa_s,relative_difference_pct,status,notes
+EVO_AUDIT_7320_PREPOLY_130,DYNACOLL 7320,MDI_prepolymer_viscosity,130,MFR_EVO_DYNACOLL7000_2024,2024_product_range,48,MFR_EVO_DYNACOLL7320_TDS_2025,2025_grade_tds,30,37.5,version_difference,"Do not silently overwrite. The 2024 range brochure and 2025 grade TDS report different 130 C reaction-product viscosities. Both are retained as versioned manufacturer evidence."
