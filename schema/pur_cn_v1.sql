@@ -80,6 +80,26 @@ CREATE TABLE IF NOT EXISTS material_aliases (
   UNIQUE(material_id, alias)
 );
 
+CREATE TABLE IF NOT EXISTS material_property_values (
+  property_record_id TEXT PRIMARY KEY,
+  material_id TEXT NOT NULL REFERENCES materials(material_id),
+  source_id TEXT NOT NULL REFERENCES sources(source_id),
+  property_name TEXT NOT NULL,
+  value REAL,
+  qualifier TEXT,
+  value_min REAL,
+  value_max REAL,
+  unit TEXT,
+  temperature_c REAL,
+  condition TEXT,
+  method_or_standard TEXT,
+  evidence_type TEXT,
+  evidence_locator TEXT,
+  quality_level TEXT CHECK (quality_level IN ('A','B','C','D') OR quality_level IS NULL),
+  source_url TEXT,
+  notes TEXT
+);
+
 CREATE TABLE IF NOT EXISTS formulations (
   formulation_id TEXT PRIMARY KEY,
   experiment_id TEXT REFERENCES experiments(experiment_id),
@@ -93,6 +113,7 @@ CREATE TABLE IF NOT EXISTS formulations (
   nco_oh_index REAL,
   target_nco_pct REAL,
   actual_nco_pct REAL,
+  free_nco_pct REAL,
   curing_type TEXT,
   composition_completeness TEXT,
   evidence_locator TEXT,
@@ -253,6 +274,41 @@ CREATE TABLE IF NOT EXISTS viscosity_curves (
   notes TEXT
 );
 
+CREATE TABLE IF NOT EXISTS thesis_index (
+  source_id TEXT PRIMARY KEY REFERENCES sources(source_id),
+  author TEXT,
+  title TEXT NOT NULL,
+  institution TEXT,
+  year INTEGER,
+  degree TEXT,
+  verification_basis TEXT,
+  verification_url TEXT,
+  fulltext_status TEXT,
+  priority TEXT,
+  notes TEXT
+);
+
+CREATE TABLE IF NOT EXISTS standard_index (
+  source_id TEXT PRIMARY KEY REFERENCES sources(source_id),
+  standard_number TEXT NOT NULL,
+  title TEXT NOT NULL,
+  title_en TEXT,
+  standard_type TEXT,
+  status TEXT,
+  publication_date TEXT,
+  implementation_date TEXT,
+  last_review_date TEXT,
+  last_review_conclusion TEXT,
+  ccs TEXT,
+  ics TEXT,
+  property_scope TEXT,
+  adopted_standard TEXT,
+  supersedes TEXT,
+  revision_plan TEXT,
+  official_url TEXT,
+  notes TEXT
+);
+
 CREATE VIRTUAL TABLE IF NOT EXISTS rag_fts USING fts5(
   document_id UNINDEXED,
   source_id UNINDEXED,
@@ -272,3 +328,10 @@ CREATE INDEX IF NOT EXISTS idx_process_formulation ON process_steps(formulation_
 CREATE INDEX IF NOT EXISTS idx_viscosity_temp ON viscosity_curves(temperature_c);
 CREATE INDEX IF NOT EXISTS idx_viscosity_source ON viscosity_curves(source_id);
 CREATE INDEX IF NOT EXISTS idx_evidence_source ON evidence(source_id);
+CREATE INDEX IF NOT EXISTS idx_material_property_material ON material_property_values(material_id);
+CREATE INDEX IF NOT EXISTS idx_material_property_name ON material_property_values(property_name);
+CREATE INDEX IF NOT EXISTS idx_material_property_source ON material_property_values(source_id);
+CREATE INDEX IF NOT EXISTS idx_thesis_fulltext_status ON thesis_index(fulltext_status);
+CREATE INDEX IF NOT EXISTS idx_thesis_priority ON thesis_index(priority);
+CREATE INDEX IF NOT EXISTS idx_standard_number ON standard_index(standard_number);
+CREATE INDEX IF NOT EXISTS idx_standard_property ON standard_index(property_scope);
