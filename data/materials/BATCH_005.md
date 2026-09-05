@@ -88,12 +88,27 @@ Examples:
 | Lupranate 5030 | MDI prepolymer | 18.9 | 2.0 | 1130 cP |
 | Lupranate 5040 | MDI prepolymer | 26.3 | 2.1 | 140 cP |
 
+### Stepan — polyester polyol anchors for reactive hot melts
+
+Five additional official Stepan anchors were added because their product pages/bulletins explicitly identify adhesive or reactive-hot-melt use:
+
+| Grade | OH (mg KOH/g) | Acid (mg KOH/g) | Viscosity | RHM relevance |
+|---|---:|---:|---:|---|
+| STEPANPOL PC-205P-56 | 54–58 | <=1.0 | 2800 cP @ 80 °C | polyurethane adhesives; shorter open time / higher green strength |
+| STEPANPOL PC-5120P-20 | 22 | 3 | 6000 cP @ 25 °C | Reactive Hot Melt Adhesives |
+| STEPANPOL PDP-70 | 70 | 1 | 1900 cP @ 25 °C | Reactive Hot Melt Adhesives |
+| STEPANPOL PC-5000P-30 | 30 | 1 | 10200 cP @ 25 °C | prepolymer grade; Reactive Hot Melt Adhesives |
+| STEPANPOL PC-5090P-56 | 55 | 0.7 | 1500 cP @ 60 °C | polyurethane adhesives |
+
+PC-205P-56 also provides water <=0.05 wt.%, equivalent weight 1000 g/eq OH, functionality 2.0 and melting point 64 °C.
+
 ## Files added
 
 - `data/materials/batch005_sources.csv`
 - `data/materials/material_property_summary_batch005.csv`
 - `data/materials/isocyanate_property_summary_batch005.csv`
 - `data/materials/evonik_rhm_reference_batch005.csv`
+- `data/materials/stepan_polyols_batch005.csv`
 - `data/legacy/cloud_inventory.csv`
 
 ## Evidence rules
