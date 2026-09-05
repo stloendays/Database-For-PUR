@@ -4,20 +4,22 @@
 
 ### Evidence-grounded knowledge base for PU / PUR / HMPUR research
 
-**把分散在论文、学位论文、专利、标准与工业资料中的 PUR 数据，转化为可检索、可追溯、可建模的实验级数据库。**
+**Turning scattered PUR evidence from papers, theses, patents, standards and industrial documents into an experiment-level database that is searchable, traceable and model-ready.**
+
+**English** | [简体中文](README.zh-CN.md)
 
 <p align="center">
   <img src="assets/pur_overview_banner.svg" alt="Database for PUR overview banner" width="100%">
 </p>
 
 [![Status](https://img.shields.io/badge/status-active%20development-2ea44f?style=flat-square)](https://github.com/stloendays/Database-For-PUR)
-[![Data](https://img.shields.io/badge/data-Batch%20004-0969da?style=flat-square)](data/cn/BATCH_004.md)
+[![Data](https://img.shields.io/badge/data-Batch%20005-0969da?style=flat-square)](data/materials/BATCH_005.md)
 [![SQLite](https://img.shields.io/badge/database-SQLite-07405e?style=flat-square)](schema/pur_cn_v1.sql)
 [![RAG](https://img.shields.io/badge/RAG-evidence--grounded-7b61ff?style=flat-square)](#rag--agent)
 [![Inverse Design](https://img.shields.io/badge/use-inverse%20design-d97706?style=flat-square)](#research-focus)
 [![Last Commit](https://img.shields.io/github/last-commit/stloendays/Database-For-PUR?style=flat-square)](https://github.com/stloendays/Database-For-PUR/commits/main)
 
-[Overview](#overview) · [Data Snapshot](#data-snapshot) · [Schema](#data-model) · [Research](#research-focus) · [Quick Start](#quick-start) · [Evidence Policy](#evidence-policy) · [Roadmap](#roadmap)
+[Overview](#overview) · [Data Snapshot](#data-snapshot) · [Data Model](#data-model) · [Research](#research-focus) · [Quick Start](#quick-start) · [Evidence Policy](#evidence-policy) · [Roadmap](#roadmap)
 
 </div>
 
@@ -25,32 +27,34 @@
 
 ## Overview
 
-`Database-For-PUR` 是一个面向 **polyurethane / reactive polyurethane hot-melt adhesive (PUR/HMPUR)** 的结构化科研数据库。
+`Database-For-PUR` is a structured research database for **polyurethane / reactive polyurethane hot-melt adhesive (PUR/HMPUR)** studies.
 
-它不是 PDF 收藏夹，也不是简单的文献索引。项目的核心是把公开资料拆解到实验层级：
+It is not a PDF collection and not merely a bibliography. The project decomposes public sources into an experiment-level chain:
 
 > **Source → Experiment → Formulation → Material → Process → Measurement → Standard → Evidence**
 
-目标是让每一个可用于分析或建模的数值，都能回答三个问题：
+Every value intended for analysis or modeling should answer three questions:
 
-1. **它是什么？** — 物性、单位、测试温度、基材、固化时间等语义明确；
-2. **它从哪里来？** — 保留 `source_id`、`evidence_locator`、原始链接与证据等级；
-3. **它能不能用于模型？** — measured / claimed / inferred / secondary evidence 严格区分。
+1. **What exactly is it?** — property, unit, test temperature, substrate, curing time and other semantics are explicit;
+2. **Where did it come from?** — `source_id`, `evidence_locator`, source URL and evidence quality are preserved;
+3. **Can it be used for modeling?** — measured, claimed, inferred and secondary evidence are separated.
 
-最终服务于：
+Primary use cases include:
 
-- PUR 配方与工艺规律挖掘
-- SQL / FTS / Vector RAG 检索
-- 数据驱动的 property prediction
+- PUR formulation/process mining
+- SQL / FTS / vector RAG retrieval
+- property prediction
 - formulation screening
 - inverse design
-- Agent-based evidence retrieval
+- evidence-grounded scientific agents
 
 ---
 
 ## Data Snapshot
 
-### Legacy HMPUR base
+### Legacy HMPUR cloud base
+
+The pre-existing cloud HMPUR SQLite has been verified to contain:
 
 | Data layer | Records |
 |---|---:|
@@ -62,6 +66,8 @@
 | Temperature–viscosity points | **4,559** |
 | Descriptor records | **1,599** |
 | PU Tg ML samples | **226** |
+
+The 4,559 temperature–viscosity points correspond to **39 distinct PU prepolymer viscosity curves**, spanning roughly 40–80 °C, multiple polyol/isocyanate codes, and pNCO values from 4–10 wt.%. The legacy inventory is exposed in [`data/legacy/cloud_inventory.csv`](data/legacy/cloud_inventory.csv).
 
 ### Chinese structured corpus — Batch 004
 
@@ -79,7 +85,7 @@
 | MSc thesis index | **10** |
 | Chinese standards | **8** |
 
-> 最新批次说明：[`data/cn/BATCH_004.md`](data/cn/BATCH_004.md)
+> See [`data/cn/BATCH_004.md`](data/cn/BATCH_004.md)
 
 ### Corpus growth
 
@@ -87,7 +93,7 @@
   <img src="assets/corpus_growth.svg" alt="Growth of Chinese PUR structured corpus" width="100%">
 </p>
 
-Batch 001 → 004 中，中文结构化子库由 **4 → 36 sources**、**16 → 42 experiments**、**18 → 131 measurements**，并逐步加入 journal / thesis / patent / standard 等不同证据层。
+From Batch 001 to Batch 004, the Chinese structured corpus grew from **4 → 36 sources**, **16 → 42 experiments**, and **18 → 131 measurements**.
 
 ### Source composition
 
@@ -95,7 +101,19 @@ Batch 001 → 004 中，中文结构化子库由 **4 → 36 sources**、**16 →
   <img src="assets/source_mix.svg" alt="Source composition of Chinese PUR corpus" width="100%">
 </p>
 
-当前 36 个中文域来源由 **10 个 CN patent、10 篇硕士论文、8 个标准、7 篇期刊论文和 1 条综述型二手来源**组成。不同来源类型在训练时不等权：standard / metadata / secondary evidence 主要用于语义、方法和 RAG 约束，不默认作为主训练观测。
+The current Chinese-domain source layer consists of **10 CN patents, 10 MSc theses, 8 standards, 7 journal papers and 1 secondary review source**. These source types are not treated equally during modeling: standards, metadata and secondary evidence mainly support semantics, method constraints and RAG rather than primary training targets.
+
+### Batch 005 — raw-material descriptor layer
+
+Batch 005 extends the project from formulation-level observations toward a **raw material → reaction → property** representation. Current additions include:
+
+- **Evonik DYNACOLL 7000**: 21 polyester-polyol grades with OH number, acid number, molecular weight, Tg, Tm, softening point, density and melt viscosity;
+- **DYNACOLL + 4,4′-MDI controlled RHM benchmark**: common OH:NCO = 1:2.2 conditions with open time, setting time, tensile strength, elongation and melt viscosity at 130 °C;
+- **Covestro Desmophen 2002 / C 1200**: OH, acid, water, viscosity and equivalent-weight descriptors;
+- **BASF Lupranate**: monomeric / modified / polymeric MDI and MDI prepolymers with NCO, functionality and viscosity at 25 °C;
+- **Stepan polyester polyols**: multiple grades explicitly positioned for reactive hot-melt adhesive use.
+
+See [`data/materials/BATCH_005.md`](data/materials/BATCH_005.md).
 
 ---
 
@@ -114,7 +132,6 @@ flowchart LR
     B --> I
     C --> I
     G --> I
-
     E --> J[Descriptors]
     F --> K[ML / RAG / Inverse Design]
     G --> K
@@ -126,19 +143,19 @@ flowchart LR
 
 | Table | Purpose |
 |---|---|
-| `sources` | 论文、专利、学位论文、标准、TDS/SDS、报告等来源 |
-| `experiments` | 一篇来源内部的 sample / example / comparative example |
-| `materials` | 原料主表与标准化材料实体 |
-| `formulations` | 配方级记录 |
-| `formulation_components` | component-level 配方组成 |
-| `process_steps` | 脱水、加料、预聚、扩链、真空脱泡等工艺步骤 |
-| `measurements` | 黏度、NCO、open time、peel、lap shear、DSC 等观测值 |
-| `protocols` | 测试方法、条件与标准 |
-| `standard_index` | GB / HG/T 等标准索引 |
-| `evidence` | 原始证据定位、证据类型与可信度 |
-| `viscosity_curves` | 温度–黏度曲线点 |
-| `thesis_index` | 中文硕博论文追踪与全文状态 |
-| `rag_fts` | SQLite FTS5 全文检索入口 |
+| `sources` | papers, patents, theses, standards, TDS/SDS and reports |
+| `experiments` | sample / example / comparative example within a source |
+| `materials` | normalized raw-material master entities |
+| `formulations` | formulation-level records |
+| `formulation_components` | component-level formulation composition |
+| `process_steps` | drying, charging, prepolymerization, chain extension, degassing, etc. |
+| `measurements` | viscosity, NCO, open time, peel, lap shear, DSC and other observations |
+| `protocols` | test methods and conditions |
+| `standard_index` | GB / HG/T and related standards |
+| `evidence` | evidence locator, evidence type and quality |
+| `viscosity_curves` | temperature–viscosity curve points |
+| `thesis_index` | Chinese thesis tracking and full-text status |
+| `rag_fts` | SQLite FTS5 retrieval entry point |
 
 ---
 
@@ -146,35 +163,35 @@ flowchart LR
 
 ### 1. Polyol blend → MDI prepolymer amplification
 
-本数据库特别支持当前 HMPUR 研究中的核心假设：
+A central HMPUR hypothesis supported by this database is:
 
-> **多元醇共混物层面的微小性质差异，在进入 MDI 预聚物阶段后可能被系统性放大，而放大程度本身受 blend composition 调制。**
+> **Small property differences at the polyol-blend level may be systematically amplified after entering the MDI prepolymer stage, with the amplification itself depending on blend composition.**
 
 <p align="center">
   <img src="assets/research_workflow.svg" alt="PUR research workflow" width="100%">
 </p>
 
-优先变量：
+Priority variables include:
 
 `blend viscosity` · `prepolymer viscosity` · `NCO/OH` · `free NCO` · `OH value` · `acid value` · `Mn` · `polyol chemistry` · `reaction temperature` · `reaction time` · `DSC/crystallization` · `open time` · `green strength` · `peel` · `lap shear`
 
-### Example: composition–property trajectory
+### Real composition–property trajectory
 
 <p align="center">
   <img src="assets/pae_property_trends.svg" alt="PAE composition property trends in PUR" width="100%">
 </p>
 
-真实数据已经能够支持 composition–property 连续关系分析。以 `CN_JRN_WANG2026_PAE` 为例，PAE 从 **0 → 10 wt.%** 时，melt viscosity 由 **1292 → 4821 mPa·s**，NCO 由 **3.372 → 2.411 wt.%**，open time 由 **4.5 → 11.3 min**。这类连续序列比单个 optimum formulation 更适合训练和验证 composition-aware 模型。
+For `CN_JRN_WANG2026_PAE`, increasing PAE from **0 → 10 wt.%** changes melt viscosity from **1292 → 4821 mPa·s**, NCO from **3.372 → 2.411 wt.%**, and open time from **4.5 → 11.3 min**. Continuous trajectories like this are more valuable for composition-aware modeling than isolated optimum formulations.
 
 ### 2. Mixing-law failure
 
-数据库用于检验简单加性混合律是否能够闭合：
+The database supports testing whether simple additive mixing laws can close the system:
 
 $$
 X_{blend} \rightarrow X_{prepolymer} \rightarrow Y_{adhesive}
 $$
 
-并研究 composition-dependent amplification：
+and whether amplification is composition dependent:
 
 $$
 A = \frac{\Delta \eta_{prepolymer}}{\Delta \eta_{blend}}
@@ -198,42 +215,14 @@ Experimentally testable PUR formulations
 
 ## What is being collected?
 
-### Literature
+- Chinese and English journal papers, MSc/PhD theses and conference/technical documents;
+- CN / WO / US / EP patents with example / comparative example / claimed range separation;
+- GB / HG/T adhesive test standards;
+- polyester / polyether / polycarbonate polyol TDS;
+- MDI grades, tackifiers, acrylic resins, catalysts and silanes;
+- legally redistributable open datasets and industrial technical material.
 
-- 中文 / 英文期刊论文
-- MSc / PhD 学位论文
-- 会议论文与技术资料
-
-### Patents
-
-- CN patents
-- WO / US / EP patent families
-- example / comparative example / claimed range 分离
-
-### Standards
-
-当前已建立包括以下标准的结构化索引：
-
-- `HG/T 3660-1999` — melt viscosity
-- `HG/T 3716-2003` — open time
-- `GB/T 16998-1997` — thermal stability
-- `GB/T 15332-1994` — softening point
-- `HG/T 5052-2016` — heat-fail temperature in shear
-- `HG/T 3697-2016` — textile hot-melt adhesive
-- `GB/T 2790-1995` — 180° peel
-- `GB/T 7124-2008` — tensile lap-shear
-
-### Industrial data
-
-后续重点扩充：
-
-- polyester polyol / polyether polyol / polycarbonate polyol TDS
-- MDI grades
-- tackifiers
-- acrylic resins
-- catalysts
-- silanes
-- supplier property sheets
+The repository **does not redistribute copyrighted full-text papers or theses by default**. It stores structured factual observations, metadata, source links, short evidence locators and legally shareable data.
 
 ---
 
@@ -242,94 +231,45 @@ Experimentally testable PUR formulations
 ```text
 Database-For-PUR/
 │
-├── assets/
-│   ├── pur_overview_banner.svg
-│   ├── research_workflow.svg
-│   ├── corpus_growth.svg
-│   ├── source_mix.svg
-│   └── pae_property_trends.svg
-│
+├── README.md                  # English
+├── README.zh-CN.md            # 简体中文
+├── assets/                    # README research/data visualizations
 ├── data/
-│   ├── cn/                     # Chinese structured corpus
-│   │   ├── BATCH_002.md
-│   │   ├── BATCH_003.md
-│   │   ├── BATCH_004.md
-│   │   ├── thesis_index.csv
-│   │   └── standard_index.csv
-│   ├── legacy/                 # Existing HMPUR structured base
-│   ├── master/                 # Terminology / material normalization
-│   └── rag/                    # RAG-ready evidence units
-│
+│   ├── cn/                    # Chinese structured corpus
+│   ├── legacy/                # legacy cloud inventory and migration indices
+│   ├── materials/             # Batch 005 raw-material descriptor layer
+│   ├── master/                # terminology / material normalization
+│   └── rag/                   # RAG-ready evidence units
 ├── schema/
-│   └── pur_cn_v1.sql           # Unified SQLite schema
-│
+│   └── pur_cn_v1.sql
 ├── scripts/
-│   ├── build_database.py       # Rebuild SQLite database
-│   └── validate_database.py    # Integrity / FK / evidence checks
-│
+│   ├── build_database.py
+│   └── validate_database.py
 └── releases/
-    └── cn_seed_batch_*.zip     # Cumulative structured releases
+    └── cn_seed_batch_*.zip
 ```
 
 ---
 
 ## Quick Start
 
-### 1. Clone
-
 ```bash
 git clone https://github.com/stloendays/Database-For-PUR.git
 cd Database-For-PUR
-```
-
-### 2. Build SQLite database
-
-```bash
 python scripts/build_database.py --output database/pur_master.db
-```
-
-The builder automatically uses the latest cumulative Chinese release when needed.
-
-### 3. Validate
-
-```bash
 python scripts/validate_database.py database/pur_master.db
 ```
 
-### 4. Example SQL
-
-Find PUR viscosity records around 120 °C:
+Example: find PUR viscosity records around 120 °C.
 
 ```sql
-SELECT
-    source_id,
-    formulation_id,
-    sample_id,
-    property_name_normalized,
-    value,
-    unit,
-    temperature_c,
-    evidence_type,
-    quality_level
+SELECT source_id, formulation_id, sample_id,
+       property_name_normalized, value, unit,
+       temperature_c, evidence_type, quality_level
 FROM measurements
 WHERE property_name_normalized LIKE '%viscosity%'
   AND temperature_c BETWEEN 115 AND 125
 ORDER BY value;
-```
-
-Find formulations with measured NCO data:
-
-```sql
-SELECT
-    f.formulation_id,
-    f.source_id,
-    f.actual_nco_pct,
-    m.value AS measured_nco,
-    m.quality_level
-FROM formulations f
-JOIN measurements m
-  ON f.formulation_id = m.formulation_id
-WHERE m.property_name_normalized LIKE '%nco%';
 ```
 
 ---
@@ -346,84 +286,45 @@ flowchart LR
     R --> E[Evidence-grounded answer]
 ```
 
-Agent 输出候选配方或数值时，至少应同时返回：
-
-```text
-source_id
-experiment_id
-formulation_id
-property / value / unit
-measurement condition
-evidence_type
-quality_level
-evidence_locator
-source_url
-```
+Agent outputs should return at minimum: `source_id`, `experiment_id`, `formulation_id`, property/value/unit, measurement condition, `evidence_type`, `quality_level`, `evidence_locator` and `source_url`.
 
 ---
 
 ## Evidence Policy
 
-### Quality level
-
 | Level | Definition | Default modeling use |
 |---|---|---|
-| **A** | 完整配方 + 工艺 + 测试条件 + 定量结果 + 原始证据定位 | ✅ preferred |
-| **B** | 配方和定量结果可靠，但部分工艺/测试条件缺失 | ✅ usable with caution |
-| **C** | 部分配方、范围、二手报道或间接信息 | ⚠️ RAG / weak supervision |
-| **D** | 综述、背景资料、宣传资料 | ❌ not primary training data |
+| **A** | complete formulation + process + test conditions + quantitative result + traceable primary evidence | ✅ preferred |
+| **B** | reliable formulation and quantitative result, but some process/test conditions are missing | ✅ usable with caution |
+| **C** | partial formulation, ranges, indirect or secondary reporting | ⚠️ RAG / weak supervision |
+| **D** | review, background or promotional information | ❌ not primary training data |
 
-### Evidence type
+Evidence types include:
 
-```text
-measured
-example
-comparative_example
-reported
-claimed_range
-recommended_range
-digitized_from_figure
-inferred
-secondary_reported
-```
+`measured` / `example` / `comparative_example` / `reported` / `claimed_range` / `recommended_range` / `digitized_from_figure` / `inferred` / `secondary_reported`
 
-**Critical rules**
+Critical rules:
 
-- Missing / not disclosed **≠ 0**
-- 原始值与标准化值同时保留
-- 测试温度、时间、基材、固化时间属于 measurement semantics
-- patent claimed range 不得伪装成 measured example
-- 二手引用不升级为原论文实验数据
-- 图片表格无法可靠读取时，不为了增加 row count 猜数
-
----
-
-## Copyright & Data Ethics
-
-本仓库默认**不公开上传受版权保护的论文或学位论文全文**。
-
-公开仓库主要保存：
-
-- bibliographic metadata
-- structured factual observations
-- source URLs
-- short evidence locators
-- normalized experimental records
-- legally redistributable open data
-
-受限全文应由研究者在本地合法获取和维护。
+- Missing / not disclosed **≠ 0**;
+- original and normalized values are both retained;
+- test temperature, time, substrate and curing time are part of measurement semantics;
+- patent claimed ranges must not be treated as measured examples;
+- manufacturer specifications must not be treated as independent experimental measurements;
+- secondary citations are not promoted to primary experimental evidence;
+- unreadable image tables are not guessed merely to increase row count.
 
 ---
 
 ## Roadmap
 
-- [x] Legacy HMPUR database migration
+- [x] Legacy HMPUR database inventory & migration base
 - [x] PUR-CN relational schema
 - [x] Chinese patent seed corpus
 - [x] Quantitative Chinese journal extraction
 - [x] MSc thesis index
 - [x] Chinese test-standard layer
-- [ ] Raw-material master database: polyols / MDI / tackifiers / catalysts / silanes
+- [x] Raw-material Batch 005 seed: polyols / MDI / controlled RHM benchmark
+- [ ] Full 4,559-point legacy viscosity migration
 - [ ] Full thesis extraction where legally accessible
 - [ ] Unified material descriptor layer
 - [ ] Automated FTS + vector hybrid retrieval
@@ -433,25 +334,9 @@ secondary_reported
 
 ---
 
-## Current Development Direction
-
-```text
-Literature / Patents / Standards / TDS
-                ↓
-        Evidence extraction
-                ↓
-      Structured PUR database
-                ↓
-     Material + Process descriptors
-                ↓
-        RAG / ML / Agent layer
-                ↓
-          Inverse Design
-                ↓
-      Experimental validation
-```
-
 <div align="center">
+
+**English** | [简体中文](README.zh-CN.md)
 
 **Database-For-PUR**  
 *From scattered formulation evidence to machine-readable polyurethane design knowledge.*
