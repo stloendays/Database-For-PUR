@@ -1,0 +1,6 @@
+sample_id,polyol_blend_ratio,nco_wt_pct,melt_viscosity_cp,viscosity_temperature_c,appearance,viscosity_stability_pct_per_h,open_time_min,open_time_qualifier,green_strength_1min_psi,green_strength_3min_psi,green_strength_6min_psi,creep_initial_g,creep_3min_g,source_id,evidence_locator
+F1,Polyol B only,2.94,9300,120,Clear,5.8,10,>,6.8,5.8,5.9,50,50,PAT_US20060205909A1,Tables 7-8
+F2,HDA/Polyol B/PD-56 (50/25/25),2.13,10480,120,Opaque,<4.5,1.5,,19.6,53.8,110.3,200,1000,PAT_US20060205909A1,Tables 7-8
+F3,HDA/Polyol C (50/50),2.98,7020,120,Clear,<4.5,2,,3.8,57.9,93.9,50,1000,PAT_US20060205909A1,Tables 7-8
+F4,HDA/Polyol D (50/50),2.12,5820,120,Clear,<4.5,0.5,,4.2,24.9,24.5,300,1000,PAT_US20060205909A1,Tables 7-8
+F5,HDA/Polyol B (50/50),2.69,6300,120,Clear,<4.5,1.5,,1.7,21.7,20.6,50,1000,PAT_US20060205909A1,Tables 7-8
