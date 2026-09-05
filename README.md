@@ -10,7 +10,7 @@
 <p align="center">
   <a href="data/materials/BATCH_005.md"><img src="https://img.shields.io/badge/data-Batch%20005-0969da?style=flat-square" alt="Batch 005"></a>
   <a href="schema/pur_cn_v1.sql"><img src="https://img.shields.io/badge/database-SQLite-07405e?style=flat-square" alt="SQLite"></a>
-  <img src="https://img.shields.io/badge/status-active%20development-2ea44f?style=flat-square" alt="Active development">
+  <img src="https://img.shields.io/badge/build-validated-2ea44f?style=flat-square" alt="Validated build">
   <img src="https://img.shields.io/badge/use-inverse%20design-d97706?style=flat-square" alt="Inverse design">
 </p>
 
@@ -30,56 +30,49 @@
 
 `Database-For-PUR` is a structured research database for **polyurethane and reactive polyurethane hot-melt adhesive (PUR/HMPUR)** research.
 
-The project organizes public and user-owned data at experiment level:
+The project organizes data at experiment level:
 
 **Source → Experiment → Formulation → Material → Process → Measurement → Standard → Evidence**
 
-Primary uses include:
-
-- formulation and process mining;
-- SQL / FTS / vector retrieval;
-- property prediction;
-- formulation screening;
-- inverse design;
-- evidence-grounded scientific agents.
+Primary uses include formulation/process mining, SQL/FTS/vector retrieval, property prediction, formulation screening, inverse design, and scientific-agent workflows.
 
 ---
 
 <a id="data-snapshot"></a>
 ## Data Snapshot
 
-### Legacy HMPUR cloud base
+### Unified validated build — Batch 005
 
-The pre-existing HMPUR database contains:
+The current reproducible build combines the legacy HMPUR base, the cumulative Chinese corpus, and the Batch 005 raw-material / controlled-RHM layer.
 
 | Data layer | Records |
 |---|---:|
-| Sources | **21** |
-| Standardized formulations | **85** |
-| Formulation components | **278** |
-| Property / performance observations | **547** |
-| Experimental protocols | **22** |
+| Sources | **66** |
+| Experiments | **63** |
+| Materials | **37** |
+| Material property records | **209** |
+| Formulations | **147** |
+| Formulation components | **572** |
+| Process steps | **200** |
+| Measurements | **795** |
+| Protocols | **51** |
 | Temperature-viscosity points | **4,559** |
-| Descriptor records | **1,599** |
-| PU Tg ML samples | **226** |
+| Patents | **10** |
+| Evidence records | **58** |
+| MSc thesis index | **10** |
+| Chinese standards | **8** |
 
-The legacy viscosity set contains **39 distinct PU prepolymer curves** over roughly 40–80 °C. A compact inventory is available in [`data/legacy/cloud_inventory.csv`](data/legacy/cloud_inventory.csv).
+Local rebuild validation: **0 foreign-key violations** and `PRAGMA integrity_check = ok`.
+
+### Legacy HMPUR layer
+
+The migrated legacy layer contributes **85 formulations**, **278 formulation components**, **547 observations**, **22 protocols**, and all **4,559 temperature-viscosity points**. The viscosity data represent **39 distinct PU prepolymer curves** over roughly 40–80 °C.
+
+The compressed curve table is available at [`data/legacy/viscosity_curves.csv.gz`](data/legacy/viscosity_curves.csv.gz).
 
 ### Chinese structured corpus — Batch 004
 
-| Data layer | Records |
-|---|---:|
-| Chinese sources | **36** |
-| Experiments | **42** |
-| Formulations | **41** |
-| Formulation components | **252** |
-| Process steps | **137** |
-| Measurements | **131** |
-| Protocol records | **29** |
-| Evidence records | **58** |
-| CN patents | **10** |
-| MSc thesis index | **10** |
-| Chinese standards | **8** |
+The cumulative Chinese corpus contains **36 sources**, **42 experiments**, **41 formulations**, **131 measurements**, **10 CN patents**, **10 indexed MSc theses**, and **8 adhesive standards**.
 
 <p align="center">
   <img src="assets/corpus_growth.svg" alt="Growth of Chinese PUR structured corpus" width="100%">
@@ -89,15 +82,17 @@ The legacy viscosity set contains **39 distinct PU prepolymer curves** over roug
   <img src="assets/source_mix.svg" alt="Source composition of Chinese PUR corpus" width="100%">
 </p>
 
-### Batch 005 — raw-material descriptor layer
+### Batch 005 — raw material → reaction → property
 
-Batch 005 extends the database toward a **raw material → reaction → property** representation. Current additions include:
+Batch 005 adds:
 
 - Evonik DYNACOLL 7000 polyester-polyol descriptors;
 - a controlled DYNACOLL + 4,4′-MDI RHM benchmark at OH:NCO = 1:2.2;
 - Covestro Desmophen polyol descriptors;
 - BASF Lupranate MDI / MDI-prepolymer descriptors;
 - Stepan polyester polyols used in reactive hot-melt adhesive applications.
+
+The unified schema now includes `material_property_values`, so ranges and temperature-dependent raw-material properties can be represented without collapsing them into a single midpoint.
 
 See [`data/materials/BATCH_005.md`](data/materials/BATCH_005.md).
 
@@ -112,6 +107,7 @@ flowchart LR
     B --> C[Formulation]
     C --> D[Formulation Component]
     D --> E[Material Master]
+    E --> P[Material Property Values]
     B --> F[Process Step]
     B --> G[Measurement]
     G --> H[Protocol or Standard]
@@ -119,14 +115,13 @@ flowchart LR
     B --> I
     C --> I
     G --> I
-    E --> J[Descriptors]
-    F --> K[ML / RAG / Inverse Design]
+    P --> K[ML / RAG / Inverse Design]
+    F --> K
     G --> K
-    J --> K
     I --> K
 ```
 
-Core tables include `sources`, `experiments`, `materials`, `formulations`, `formulation_components`, `process_steps`, `measurements`, `protocols`, `evidence`, `viscosity_curves`, `thesis_index`, and `standard_index`.
+Core tables include `sources`, `experiments`, `materials`, `material_property_values`, `formulations`, `formulation_components`, `process_steps`, `measurements`, `protocols`, `evidence`, `viscosity_curves`, `thesis_index`, and `standard_index`.
 
 ---
 
@@ -195,6 +190,8 @@ Database-For-PUR/
 │   ├── build_database.py
 │   └── validate_database.py
 └── releases/
+    ├── cn_seed_batch_004.zip
+    └── pur_core_integration_v005.zip
 ```
 
 ---
@@ -202,7 +199,7 @@ Database-For-PUR/
 <a id="quick-start"></a>
 ## Quick Start
 
-The current builder reconstructs the **core v1 database** from committed legacy metadata, the latest committed Chinese release, and transparent source deltas.
+The current builder reconstructs the unified Batch 005 database directly from committed release payloads.
 
 ```bash
 git clone https://github.com/stloendays/Database-For-PUR.git
@@ -211,7 +208,7 @@ python scripts/build_database.py --output database/pur_master.db
 python scripts/validate_database.py database/pur_master.db
 ```
 
-Batch 005 raw-material CSVs are currently distributed as standalone datasets under `data/materials/` and are being integrated into the unified schema separately.
+For reproducible pinning, the current payloads are [`releases/cn_seed_batch_004.zip`](releases/cn_seed_batch_004.zip) and [`releases/pur_core_integration_v005.zip`](releases/pur_core_integration_v005.zip).
 
 Example query:
 
@@ -225,6 +222,18 @@ WHERE property_name_normalized LIKE '%viscosity%'
 ORDER BY value;
 ```
 
+Raw-material query:
+
+```sql
+SELECT m.supplier, m.grade,
+       p.property_name, p.value, p.value_min, p.value_max,
+       p.unit, p.temperature_c
+FROM material_property_values p
+JOIN materials m ON m.material_id = p.material_id
+WHERE p.property_name LIKE '%viscosity%'
+ORDER BY m.supplier, m.grade, p.temperature_c;
+```
+
 ---
 
 <a id="roadmap"></a>
@@ -232,17 +241,16 @@ ORDER BY value;
 
 - [x] Legacy HMPUR inventory and migration base
 - [x] PUR-CN relational schema
-- [x] Chinese patent seed corpus
-- [x] Quantitative Chinese journal extraction
-- [x] MSc thesis index
-- [x] Chinese test-standard layer
+- [x] Chinese patent / journal / thesis / standard seed layers
 - [x] Raw-material Batch 005 seed
-- [ ] Full 4,559-point legacy viscosity migration
-- [ ] Integrate Batch 005 material tables into the unified schema
+- [x] Full 4,559-point legacy viscosity migration
+- [x] Batch 005 material-property schema integration
+- [x] Reproducible cumulative Batch 004 + integration-v005 releases
+- [ ] Continue raw-material grade expansion
 - [ ] Full thesis extraction where accessible
-- [ ] Unified material descriptor layer
 - [ ] Hybrid retrieval and ML-ready export
-- [ ] Blend → prepolymer amplification dataset
+- [ ] Direct blend-viscosity → prepolymer-viscosity paired dataset
+- [ ] Blend → prepolymer amplification benchmark
 - [ ] Evidence-constrained inverse-design benchmark
 
 ---
