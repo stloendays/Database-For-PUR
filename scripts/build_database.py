@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-"""Build the PUR master SQLite database from repository data.
+"""Build the PUR core SQLite database from repository data.
 
-The builder loads transparent CSV files from ``data/cn`` when present and falls
-back to the latest cumulative ``releases/cn_seed_batch_*.zip`` for tables that
-are not checked into the tree individually.
+The builder loads the transparent Chinese source tree, merges later source
+metadata deltas, and falls back to the latest committed cumulative Chinese
+release for relational tables that are not checked into the tree individually.
+
+Batch 005 raw-material files currently remain standalone CSV datasets and are
+not yet imported into the v1 core schema.
 
 Usage:
     python scripts/build_database.py --output database/pur_master.db
-    python scripts/build_database.py --cn-release releases/cn_seed_batch_004.zip
+    python scripts/build_database.py --cn-release releases/cn_seed_batch_002.zip
 """
 from __future__ import annotations
 
@@ -79,8 +82,12 @@ CN_IMPORTS = [
 ]
 
 
-def import_rows(conn: sqlite3.Connection, fieldnames: Iterable[str] | None,
-                rows: Iterable[Mapping[str, str]], table: str) -> int:
+def import_rows(
+    conn: sqlite3.Connection,
+    fieldnames: Iterable[str] | None,
+    rows: Iterable[Mapping[str, str]],
+    table: str,
+) -> int:
     rows = list(rows)
     if not rows:
         return 0
@@ -101,12 +108,18 @@ def import_csv(conn: sqlite3.Connection, path: Path, table: str) -> int:
         return import_rows(conn, reader.fieldnames, reader, table)
 
 
-def import_zip_csv(conn: sqlite3.Connection, zf: zipfile.ZipFile,
-                   filename: str, table: str) -> int | None:
+def import_zip_csv(
+    conn: sqlite3.Connection,
+    zf: zipfile.ZipFile,
+    filename: str,
+    table: str,
+) -> int | None:
     members = set(zf.namelist())
     for member in (f"data/cn/{filename}", filename):
         if member in members:
-            with zf.open(member) as raw, io.TextIOWrapper(raw, encoding="utf-8-sig", newline="") as fh:
+            with zf.open(member) as raw, io.TextIOWrapper(
+                raw, encoding="utf-8-sig", newline=""
+            ) as fh:
                 reader = csv.DictReader(fh)
                 return import_rows(conn, reader.fieldnames, reader, table)
     return None
@@ -117,11 +130,24 @@ def latest_cn_release() -> Path | None:
     return releases[-1] if releases else None
 
 
+def import_source_deltas(conn: sqlite3.Connection) -> int:
+    """Merge later transparent source metadata into the source master table."""
+    total = 0
+    for path in sorted((ROOT / "data" / "cn").glob("batch*_sources.csv")):
+        n = import_csv(conn, path, "sources")
+        total += n
+        print(f"imported {n:>6} rows -> {'sources':<24} from {path.relative_to(ROOT)}")
+    return total
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", default="database/pur_master.db")
-    ap.add_argument("--cn-release", default=None,
-                    help="cumulative Chinese release ZIP; defaults to latest batch")
+    ap.add_argument(
+        "--cn-release",
+        default=None,
+        help="committed cumulative Chinese release ZIP; defaults to latest available release",
+    )
     args = ap.parse_args()
 
     output = ROOT / args.output
@@ -151,7 +177,7 @@ def main() -> None:
     zf = zipfile.ZipFile(release) if release is not None else None
     try:
         for filename, table in CN_IMPORTS:
-            direct = ROOT / "data/cn" / filename
+            direct = ROOT / "data" / "cn" / filename
             if direct.exists():
                 n = import_csv(conn, direct, table)
                 label = str(direct.relative_to(ROOT))
@@ -162,8 +188,14 @@ def main() -> None:
                 label = f"{release.relative_to(ROOT)}::{filename}"
             else:
                 continue
+
             total += n
             print(f"imported {n:>6} rows -> {table:<24} from {label}")
+
+            # Source deltas must be present before thesis_index / standard_index
+            # foreign keys are evaluated at commit time.
+            if filename == "sources.csv":
+                total += import_source_deltas(conn)
     finally:
         if zf is not None:
             zf.close()
