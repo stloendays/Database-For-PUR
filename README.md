@@ -6,6 +6,10 @@
 
 **把分散在论文、学位论文、专利、标准与工业资料中的 PUR 数据，转化为可检索、可追溯、可建模的实验级数据库。**
 
+<p align="center">
+  <img src="assets/pur_overview_banner.svg" alt="Database for PUR overview banner" width="100%">
+</p>
+
 [![Status](https://img.shields.io/badge/status-active%20development-2ea44f?style=flat-square)](https://github.com/stloendays/Database-For-PUR)
 [![Data](https://img.shields.io/badge/data-Batch%20004-0969da?style=flat-square)](data/cn/BATCH_004.md)
 [![SQLite](https://img.shields.io/badge/database-SQLite-07405e?style=flat-square)](schema/pur_cn_v1.sql)
@@ -130,19 +134,9 @@ flowchart LR
 
 > **多元醇共混物层面的微小性质差异，在进入 MDI 预聚物阶段后可能被系统性放大，而放大程度本身受 blend composition 调制。**
 
-```text
-raw material
-    ↓
-polyol blend
-    ↓
-pre-reaction state
-    ↓
-MDI prepolymer
-    ↓
-hot melt
-    ↓
-cured adhesive
-```
+<p align="center">
+  <img src="assets/research_workflow.svg" alt="PUR research workflow" width="100%">
+</p>
 
 优先变量：
 
@@ -223,6 +217,10 @@ Experimentally testable PUR formulations
 
 ```text
 Database-For-PUR/
+│
+├── assets/
+│   ├── pur_overview_banner.svg
+│   └── research_workflow.svg
 │
 ├── data/
 │   ├── cn/                     # Chinese structured corpus
