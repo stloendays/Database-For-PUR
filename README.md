@@ -81,6 +81,22 @@
 
 > 最新批次说明：[`data/cn/BATCH_004.md`](data/cn/BATCH_004.md)
 
+### Corpus growth
+
+<p align="center">
+  <img src="assets/corpus_growth.svg" alt="Growth of Chinese PUR structured corpus" width="100%">
+</p>
+
+Batch 001 → 004 中，中文结构化子库由 **4 → 36 sources**、**16 → 42 experiments**、**18 → 131 measurements**，并逐步加入 journal / thesis / patent / standard 等不同证据层。
+
+### Source composition
+
+<p align="center">
+  <img src="assets/source_mix.svg" alt="Source composition of Chinese PUR corpus" width="100%">
+</p>
+
+当前 36 个中文域来源由 **10 个 CN patent、10 篇硕士论文、8 个标准、7 篇期刊论文和 1 条综述型二手来源**组成。不同来源类型在训练时不等权：standard / metadata / secondary evidence 主要用于语义、方法和 RAG 约束，不默认作为主训练观测。
+
 ---
 
 ## Data Model
@@ -141,6 +157,14 @@ flowchart LR
 优先变量：
 
 `blend viscosity` · `prepolymer viscosity` · `NCO/OH` · `free NCO` · `OH value` · `acid value` · `Mn` · `polyol chemistry` · `reaction temperature` · `reaction time` · `DSC/crystallization` · `open time` · `green strength` · `peel` · `lap shear`
+
+### Example: composition–property trajectory
+
+<p align="center">
+  <img src="assets/pae_property_trends.svg" alt="PAE composition property trends in PUR" width="100%">
+</p>
+
+真实数据已经能够支持 composition–property 连续关系分析。以 `CN_JRN_WANG2026_PAE` 为例，PAE 从 **0 → 10 wt.%** 时，melt viscosity 由 **1292 → 4821 mPa·s**，NCO 由 **3.372 → 2.411 wt.%**，open time 由 **4.5 → 11.3 min**。这类连续序列比单个 optimum formulation 更适合训练和验证 composition-aware 模型。
 
 ### 2. Mixing-law failure
 
@@ -220,7 +244,10 @@ Database-For-PUR/
 │
 ├── assets/
 │   ├── pur_overview_banner.svg
-│   └── research_workflow.svg
+│   ├── research_workflow.svg
+│   ├── corpus_growth.svg
+│   ├── source_mix.svg
+│   └── pae_property_trends.svg
 │
 ├── data/
 │   ├── cn/                     # Chinese structured corpus
