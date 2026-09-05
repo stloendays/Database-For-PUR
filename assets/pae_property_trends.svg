@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="470" viewBox="0 0 1200 470" role="img" aria-labelledby="t d">
+  <title id="t">PAE composition-property trends in moisture-curing PUR</title>
+  <desc id="d">Three line plots show melt viscosity increasing, NCO content decreasing and open time increasing as PAE content rises from 0 to 10 wt percent.</desc>
+  <rect width="1200" height="470" rx="24" fill="#0b1220"/>
+  <text x="48" y="48" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#f8fafc">Composition → property trajectory · PAE-modified PUR</text>
+  <text x="48" y="75" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" fill="#94a3b8">Measured values from Wang et al. 2026 · Public HTML Tables 1–4</text>
+
+  <!-- panels -->
+  <rect x="48" y="100" width="350" height="310" rx="16" fill="#111b2e"/>
+  <rect x="425" y="100" width="350" height="310" rx="16" fill="#111b2e"/>
+  <rect x="802" y="100" width="350" height="310" rx="16" fill="#111b2e"/>
+
+  <!-- titles -->
+  <text x="72" y="132" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" font-weight="700" fill="#dbeafe">Melt viscosity</text>
+  <text x="449" y="132" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" font-weight="700" fill="#dbeafe">NCO content</text>
+  <text x="826" y="132" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" font-weight="700" fill="#dbeafe">Open time</text>
+
+  <!-- panel 1 axes/grid -->
+  <line x1="86" y1="360" x2="370" y2="360" stroke="#334155"/>
+  <line x1="86" y1="300" x2="370" y2="300" stroke="#1e293b"/>
+  <line x1="86" y1="240" x2="370" y2="240" stroke="#1e293b"/>
+  <line x1="86" y1="180" x2="370" y2="180" stroke="#1e293b"/>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="10" fill="#64748b">
+    <text x="55" y="364">1000</text><text x="55" y="304">2000</text><text x="55" y="244">3000</text><text x="55" y="184">4000</text><text x="55" y="154">5000</text>
+  </g>
+  <polyline points="96,342.5 149,322.7 202,269.4 255,220.3 308,171.4 361,130.7" fill="none" stroke="#22d3ee" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#0b1220" stroke="#67e8f9" stroke-width="4">
+    <circle cx="96" cy="342.5" r="6"/><circle cx="149" cy="322.7" r="6"/><circle cx="202" cy="269.4" r="6"/><circle cx="255" cy="220.3" r="6"/><circle cx="308" cy="171.4" r="6"/><circle cx="361" cy="130.7" r="6"/>
+  </g>
+  <text x="227" y="394" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="11" fill="#94a3b8">PAE content (wt.%)</text>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="10" fill="#94a3b8">
+    <text x="96" y="377" text-anchor="middle">0</text><text x="149" y="377" text-anchor="middle">2</text><text x="202" y="377" text-anchor="middle">4</text><text x="255" y="377" text-anchor="middle">6</text><text x="308" y="377" text-anchor="middle">8</text><text x="361" y="377" text-anchor="middle">10</text>
+  </g>
+  <text x="360" y="158" text-anchor="end" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="11" fill="#67e8f9">1292 → 4821 mPa·s</text>
+
+  <!-- panel 2 -->
+  <line x1="463" y1="360" x2="747" y2="360" stroke="#334155"/>
+  <line x1="463" y1="300" x2="747" y2="300" stroke="#1e293b"/>
+  <line x1="463" y1="240" x2="747" y2="240" stroke="#1e293b"/>
+  <line x1="463" y1="180" x2="747" y2="180" stroke="#1e293b"/>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="10" fill="#64748b">
+    <text x="436" y="364">2.4</text><text x="436" y="304">2.7</text><text x="436" y="244">3.0</text><text x="436" y="184">3.3</text>
+  </g>
+  <polyline points="473,165.6 526,237.8 579,263.2 632,317.4 685,322.6 738,357.8" fill="none" stroke="#a78bfa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#0b1220" stroke="#c4b5fd" stroke-width="4">
+    <circle cx="473" cy="165.6" r="6"/><circle cx="526" cy="237.8" r="6"/><circle cx="579" cy="263.2" r="6"/><circle cx="632" cy="317.4" r="6"/><circle cx="685" cy="322.6" r="6"/><circle cx="738" cy="357.8" r="6"/>
+  </g>
+  <text x="604" y="394" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="11" fill="#94a3b8">PAE content (wt.%)</text>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="10" fill="#94a3b8">
+    <text x="473" y="377" text-anchor="middle">0</text><text x="526" y="377" text-anchor="middle">2</text><text x="579" y="377" text-anchor="middle">4</text><text x="632" y="377" text-anchor="middle">6</text><text x="685" y="377" text-anchor="middle">8</text><text x="738" y="377" text-anchor="middle">10</text>
+  </g>
+  <text x="738" y="158" text-anchor="end" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="11" fill="#c4b5fd">3.372 → 2.411 wt.%</text>
+
+  <!-- panel 3 -->
+  <line x1="840" y1="360" x2="1124" y2="360" stroke="#334155"/>
+  <line x1="840" y1="300" x2="1124" y2="300" stroke="#1e293b"/>
+  <line x1="840" y1="240" x2="1124" y2="240" stroke="#1e293b"/>
+  <line x1="840" y1="180" x2="1124" y2="180" stroke="#1e293b"/>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="10" fill="#64748b">
+    <text x="816" y="364">4</text><text x="816" y="304">6</text><text x="816" y="244">8</text><text x="810" y="184">10</text><text x="810" y="154">12</text>
+  </g>
+  <polyline points="850,345 903,285 956,231 1009,192 1062,174 1115,141" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#0b1220" stroke="#fbbf24" stroke-width="4">
+    <circle cx="850" cy="345" r="6"/><circle cx="903" cy="285" r="6"/><circle cx="956" cy="231" r="6"/><circle cx="1009" cy="192" r="6"/><circle cx="1062" cy="174" r="6"/><circle cx="1115" cy="141" r="6"/>
+  </g>
+  <text x="981" y="394" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="11" fill="#94a3b8">PAE content (wt.%)</text>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="10" fill="#94a3b8">
+    <text x="850" y="377" text-anchor="middle">0</text><text x="903" y="377" text-anchor="middle">2</text><text x="956" y="377" text-anchor="middle">4</text><text x="1009" y="377" text-anchor="middle">6</text><text x="1062" y="377" text-anchor="middle">8</text><text x="1115" y="377" text-anchor="middle">10</text>
+  </g>
+  <text x="1116" y="158" text-anchor="end" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="11" fill="#fde68a">4.5 → 11.3 min</text>
+
+  <text x="48" y="446" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" fill="#64748b">Source: CN_JRN_WANG2026_PAE. Table value 3329 mPa·s is used for PAE 6 wt.% (abstract reports 3325).</text>
+</svg>
