@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">PUR research workflow</title>
+  <desc id="desc">Workflow from raw materials and blend properties to MDI prepolymer, adhesive performance, inverse design and experimental validation.</desc>
+  <defs>
+    <linearGradient id="box1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ecfeff"/><stop offset="1" stop-color="#cffafe"/></linearGradient>
+    <linearGradient id="box2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eff6ff"/><stop offset="1" stop-color="#dbeafe"/></linearGradient>
+    <linearGradient id="box3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f5f3ff"/><stop offset="1" stop-color="#ede9fe"/></linearGradient>
+    <linearGradient id="box4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff7ed"/><stop offset="1" stop-color="#ffedd5"/></linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"/></marker>
+  </defs>
+  <rect width="1200" height="300" rx="24" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="60" y="48" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="27" font-weight="700" fill="#0f172a">Research workflow: from blend differences to inverse design</text>
+  <text x="60" y="76" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15" fill="#64748b">Track how small polyol-level differences propagate through MDI prepolymerization into final adhesive performance.</text>
+
+  <g font-family="Inter,Segoe UI,Arial,sans-serif">
+    <g transform="translate(55 116)"><rect width="170" height="90" rx="18" fill="url(#box1)" stroke="#67e8f9"/><text x="85" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#155e75">Raw Materials</text><text x="85" y="58" text-anchor="middle" font-size="13" fill="#0e7490">OH · Mn · acid value</text><text x="85" y="76" text-anchor="middle" font-size="13" fill="#0e7490">polyol chemistry</text></g>
+    <g transform="translate(260 116)"><rect width="170" height="90" rx="18" fill="url(#box1)" stroke="#67e8f9"/><text x="85" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#155e75">Polyol Blend</text><text x="85" y="58" text-anchor="middle" font-size="13" fill="#0e7490">composition</text><text x="85" y="76" text-anchor="middle" font-size="13" fill="#0e7490">blend viscosity</text></g>
+    <g transform="translate(465 116)"><rect width="170" height="90" rx="18" fill="url(#box2)" stroke="#93c5fd"/><text x="85" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#1d4ed8">MDI Prepolymer</text><text x="85" y="58" text-anchor="middle" font-size="13" fill="#2563eb">NCO/OH · free NCO</text><text x="85" y="76" text-anchor="middle" font-size="13" fill="#2563eb">reaction history</text></g>
+    <g transform="translate(670 116)"><rect width="170" height="90" rx="18" fill="url(#box3)" stroke="#c4b5fd"/><text x="85" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#6d28d9">Hot Melt</text><text x="85" y="58" text-anchor="middle" font-size="13" fill="#7c3aed">viscosity(T)</text><text x="85" y="76" text-anchor="middle" font-size="13" fill="#7c3aed">open time</text></g>
+    <g transform="translate(875 116)"><rect width="170" height="90" rx="18" fill="url(#box4)" stroke="#fdba74"/><text x="85" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#c2410c">Adhesion</text><text x="85" y="58" text-anchor="middle" font-size="13" fill="#ea580c">green strength</text><text x="85" y="76" text-anchor="middle" font-size="13" fill="#ea580c">peel · lap shear</text></g>
+
+    <line x1="225" y1="161" x2="255" y2="161" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <line x1="430" y1="161" x2="460" y2="161" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <line x1="635" y1="161" x2="665" y2="161" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <line x1="840" y1="161" x2="870" y2="161" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+  </g>
+
+  <path d="M345 218 C345 258, 755 258, 755 218" fill="none" stroke="#8b5cf6" stroke-width="2.5" stroke-dasharray="7 7" marker-end="url(#arrow)"/>
+  <text x="550" y="264" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="600" fill="#7c3aed">composition-dependent amplification</text>
+
+  <g transform="translate(1065 120)" font-family="Inter,Segoe UI,Arial,sans-serif">
+    <circle cx="55" cy="41" r="38" fill="#0f172a"/>
+    <text x="55" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#f8fafc">Inverse</text>
+    <text x="55" y="53" text-anchor="middle" font-size="13" font-weight="700" fill="#f8fafc">Design</text>
+    <line x1="0" y1="41" x2="15" y2="41" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <text x="55" y="98" text-anchor="middle" font-size="12" fill="#64748b">→ validation</text>
+  </g>
+</svg>
