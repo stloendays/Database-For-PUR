@@ -1,0 +1,45 @@
+record_id,source_id,sample_id,board_substrate,film_substrate,test_mode,test_method_id,test_temperature,test_speed_in_min,age_value,age_unit,outcome_type,peel_strength_psi,failure_mode,outcome_text,coating_temperature_c,vinyl_coating_weight_gsf,board_coating_weight_gsf,evidence_locator,notes
+US12319850_C1_Lauan_5min,PAT_US12319850B2,C1,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,qualitative,,,poor,95,2-3,4-5,Comparative peel table,
+US12319850_C1_Lauan_24h,PAT_US12319850B2,C1,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,failure_mode_censored,,I-SF,I-SF,95,2-3,4-5,Comparative peel table,No numeric peel strength is inferred from substrate-failure code.
+US12319850_C1_Azdel_5min,PAT_US12319850B2,C1,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,qualitative,,,poor,95,2-3,4-5,Comparative peel table,
+US12319850_C1_Azdel_24h,PAT_US12319850B2,C1,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,failure_mode_censored,,SF,SF,95,2-3,4-5,Comparative peel table,No numeric peel strength is inferred from substrate-failure code.
+US12319850_C2_Lauan_5min,PAT_US12319850B2,C2,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,qualitative,,,no adhesion,95,2-3,4-5,Comparative peel table,
+US12319850_C2_Lauan_24h,PAT_US12319850B2,C2,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,failure_mode_censored,,I-SF,I-SF,95,2-3,4-5,Comparative peel table,No numeric peel strength is inferred from substrate-failure code.
+US12319850_C2_Azdel_5min,PAT_US12319850B2,C2,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,qualitative,,,no adhesion,95,2-3,4-5,Comparative peel table,
+US12319850_C2_Azdel_24h,PAT_US12319850B2,C2,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,failure_mode_censored,,SF,SF,95,2-3,4-5,Comparative peel table,No numeric peel strength is inferred from substrate-failure code.
+US12319850_C3_Lauan_5min,PAT_US12319850B2,C3,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,qualitative,,,no adhesion,95,2-3,4-5,Comparative peel table,
+US12319850_C3_Lauan_24h,PAT_US12319850B2,C3,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,failure_mode_censored,,I-SF,I-SF,95,2-3,4-5,Comparative peel table,No numeric peel strength is inferred from substrate-failure code.
+US12319850_C3_Azdel_5min,PAT_US12319850B2,C3,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,qualitative,,,no adhesion,95,2-3,4-5,Comparative peel table,
+US12319850_C3_Azdel_24h,PAT_US12319850B2,C3,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,failure_mode_censored,,SF,SF,95,2-3,4-5,Comparative peel table,No numeric peel strength is inferred from substrate-failure code.
+US12319850_E1_Lauan_5min,PAT_US12319850B2,E1,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,numeric,0.7,,0.7,95,2-3,4-5,E1-E8 peel table,
+US12319850_E1_Lauan_24h,PAT_US12319850B2,E1,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,numeric,3.7,,3.7,95,2-3,4-5,E1-E8 peel table,
+US12319850_E1_Azdel_5min,PAT_US12319850B2,E1,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,numeric,0.2,,0.2,95,2-3,4-5,E1-E8 peel table,
+US12319850_E1_Azdel_24h,PAT_US12319850B2,E1,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,numeric,1.1,,1.1,95,2-3,4-5,E1-E8 peel table,
+US12319850_E2_Lauan_5min,PAT_US12319850B2,E2,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,not_measured,,,nm,95,2-3,4-5,E1-E8 peel table,Source explicitly marks not measured.
+US12319850_E2_Lauan_24h,PAT_US12319850B2,E2,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,not_measured,,,nm,95,2-3,4-5,E1-E8 peel table,Source explicitly marks not measured.
+US12319850_E2_Azdel_5min,PAT_US12319850B2,E2,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,not_measured,,,nm,95,2-3,4-5,E1-E8 peel table,Source explicitly marks not measured.
+US12319850_E2_Azdel_24h,PAT_US12319850B2,E2,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,not_measured,,,nm,95,2-3,4-5,E1-E8 peel table,Source explicitly marks not measured.
+US12319850_E3_Lauan_5min,PAT_US12319850B2,E3,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,numeric,1.0,,1.0,95,2-3,4-5,E1-E8 peel table,
+US12319850_E3_Lauan_24h,PAT_US12319850B2,E3,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,failure_mode_censored,,I-SF,I-SF,95,2-3,4-5,E1-E8 peel table,No numeric peel strength is inferred from substrate-failure code.
+US12319850_E3_Azdel_5min,PAT_US12319850B2,E3,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,numeric,0.3,,0.3,95,2-3,4-5,E1-E8 peel table,
+US12319850_E3_Azdel_24h,PAT_US12319850B2,E3,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,numeric,6.2,,6.2,95,2-3,4-5,E1-E8 peel table,
+US12319850_E4_Lauan_5min,PAT_US12319850B2,E4,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,numeric,2.0,,2.0,95,2-3,4-5,E1-E8 peel table,
+US12319850_E4_Lauan_24h,PAT_US12319850B2,E4,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,failure_mode_censored,,I-SF,I-SF,95,2-3,4-5,E1-E8 peel table,No numeric peel strength is inferred from substrate-failure code.
+US12319850_E4_Azdel_5min,PAT_US12319850B2,E4,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,numeric,0.8,,0.8,95,2-3,4-5,E1-E8 peel table,
+US12319850_E4_Azdel_24h,PAT_US12319850B2,E4,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,failure_mode_censored,,D-SF,D-SF,95,2-3,4-5,E1-E8 peel table,No numeric peel strength is inferred from substrate-failure code.
+US12319850_E5_Lauan_5min,PAT_US12319850B2,E5,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,numeric,1.1,,1.1,95,2-3,4-5,E1-E8 peel table,
+US12319850_E5_Lauan_24h,PAT_US12319850B2,E5,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,numeric,9.3,,9.3,95,2-3,4-5,E1-E8 peel table,
+US12319850_E5_Azdel_5min,PAT_US12319850B2,E5,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,numeric,0.5,,0.5,95,2-3,4-5,E1-E8 peel table,
+US12319850_E5_Azdel_24h,PAT_US12319850B2,E5,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,numeric,5.9,,5.9,95,2-3,4-5,E1-E8 peel table,
+US12319850_E6_Lauan_5min,PAT_US12319850B2,E6,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,numeric,1.1,,1.1,95,2-3,4-5,E1-E8 peel table,
+US12319850_E6_Lauan_24h,PAT_US12319850B2,E6,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,numeric,10.6,,10.6,95,2-3,4-5,E1-E8 peel table,
+US12319850_E6_Azdel_5min,PAT_US12319850B2,E6,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,numeric,0.4,,0.4,95,2-3,4-5,E1-E8 peel table,
+US12319850_E6_Azdel_24h,PAT_US12319850B2,E6,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,numeric,5.1,,5.1,95,2-3,4-5,E1-E8 peel table,
+US12319850_E7_Lauan_5min,PAT_US12319850B2,E7,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,numeric,0.6,,0.6,95,2-3,4-5,E1-E8 peel table,
+US12319850_E7_Lauan_24h,PAT_US12319850B2,E7,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,failure_mode_censored,,SF,SF,95,2-3,4-5,E1-E8 peel table,No numeric peel strength is inferred from substrate-failure code.
+US12319850_E7_Azdel_5min,PAT_US12319850B2,E7,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,numeric,0.2,,0.2,95,2-3,4-5,E1-E8 peel table,
+US12319850_E7_Azdel_24h,PAT_US12319850B2,E7,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,failure_mode_censored,,SF,SF,95,2-3,4-5,E1-E8 peel table,No numeric peel strength is inferred from substrate-failure code.
+US12319850_E8_Lauan_5min,PAT_US12319850B2,E8,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,numeric,2.6,,2.6,95,2-3,4-5,E1-E8 peel table,
+US12319850_E8_Lauan_24h,PAT_US12319850B2,E8,Lauan plywood,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,failure_mode_censored,,I-SF,I-SF,95,2-3,4-5,E1-E8 peel table,No numeric peel strength is inferred from substrate-failure code.
+US12319850_E8_Azdel_5min,PAT_US12319850B2,E8,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,5,min,numeric,1.2,,1.2,95,2-3,4-5,E1-E8 peel table,
+US12319850_E8_Azdel_24h,PAT_US12319850B2,E8,Azdel board,vinyl foil,90_degree_peel,US12319850_PEEL_90,room_temperature,6,24,h,numeric,6.1,,6.1,95,2-3,4-5,E1-E8 peel table,
