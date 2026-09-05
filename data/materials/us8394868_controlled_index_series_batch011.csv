@@ -1,0 +1,4 @@
+series_id,source_id,example_id,polyol_blend,polyol_a_wt_fraction,polyol_b_wt_fraction,isocyanate,isocyanate_index,g_isocyanate_per_100g_polyol,reaction_temperature_c,reaction_time_h,mixing_rpm,mixing_time_min,viscosity_mpa_s,viscosity_temperature_c,viscosity_amplification_vs_unreacted_blend,evidence_locator,notes
+CP3008_NOPBA_TDI_INDEX,PAT_US8394868B2,E10,"VORANOL CP 3008 + NOPB A",0.5,0.5,VORANATE T-80,30,3.38,70,6,2000,2,3730,25,5.253521,"Table 5","All three rows use the same source-reported 50/50 precursor blend whose 25 C viscosity is 710 mPa s."
+CP3008_NOPBA_TDI_INDEX,PAT_US8394868B2,E11,"VORANOL CP 3008 + NOPB A",0.5,0.5,VORANATE T-80,33,3.72,70,6,2000,2,4550,25,6.408451,"Table 5","Controlled isocyanate-index series."
+CP3008_NOPBA_TDI_INDEX,PAT_US8394868B2,E12,"VORANOL CP 3008 + NOPB A",0.5,0.5,VORANATE T-80,36,4.06,70,6,2000,2,6500,25,9.15493,"Table 5","Controlled isocyanate-index series."
