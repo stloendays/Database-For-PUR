@@ -1,0 +1,15 @@
+record_id,source_id,material_code,material_type,chemistry,mn_g_mol,oh_number_mg_koh_g,commercial_or_source,evidence_locator,notes
+HENKEL20_POLY_A,PAT_US20200216730A1,A,polyester_polyol,HD/AA,3500,,Piothane 3500HA,Table 1,
+HENKEL20_POLY_B,PAT_US20200216730A1,B,polyester_polyol,HD/DA,3500,,Piothane 3500HD,Table 1,
+HENKEL20_POLY_C,PAT_US20200216730A1,C,polyester_polyol,BD/AA,3500,,Piothane 3500BA,Table 1,
+HENKEL20_POLY_D,PAT_US20200216730A1,D,polyester_polyol,A+C 1:1 weight blend,,,Defined patent blend,Table 1,Molecular weight is number-average where explicitly stated; D and M are 1:1 patent-defined polyester blends.
+HENKEL20_POLY_E,PAT_US20200216730A1,E,polyester_polyol,ED/AA,3500,,Piothane 3500EA,Table 1,
+HENKEL20_POLY_F,PAT_US20200216730A1,F,polyester_polyol,HD/ND/AA,3200,,Piothane 67-3000HNA,Table 1,
+HENKEL20_POLY_G,PAT_US20200216730A1,G,polyester_polyol,ED/BD/AA,3300,,Piothane 50-3300EBA,Table 1,
+HENKEL20_POLY_H,PAT_US20200216730A1,H,polyester_polyol,HD/SA,3500,,Piothane 3500HS,Table 1,
+HENKEL20_POLY_I,PAT_US20200216730A1,I,polyester_polyol,polycaprolactone,4000,,CAPA 2402,Table 1,
+HENKEL20_POLY_J,PAT_US20200216730A1,J,polyester_polyol,ED/DA,3500,,Piothane 3500ED,Table 1,
+HENKEL20_POLY_K,PAT_US20200216730A1,K,polyester_polyol,HD/SuA,3500,,Piothane 3500H-SA,Table 1,
+HENKEL20_POLY_L,PAT_US20200216730A1,L,polyester_polyol,BD/SuA,3500,32,Patent-prepared; OH# 32,Table 1,
+HENKEL20_POLY_M,PAT_US20200216730A1,M,polyester_polyol,A+E 1:1 weight blend,,,Defined patent blend,Table 1,Molecular weight is number-average where explicitly stated; D and M are 1:1 patent-defined polyester blends.
+HENKEL20_POLY_N,PAT_US20200216730A1,N,polyester_polyol,BD/AA,14203,,Piothane 11000BA,Table 1,
