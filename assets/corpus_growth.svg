@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="t d">
+  <title id="t">Chinese PUR corpus growth from Batch 001 to Batch 004</title>
+  <desc id="d">Grouped bars show sources and experiments; a line chart shows measurement growth.</desc>
+  <rect width="1200" height="430" rx="24" fill="#0b1220"/>
+  <text x="48" y="48" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#f8fafc">Chinese structured corpus growth</text>
+  <text x="48" y="75" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" fill="#94a3b8">Batch 001 → 004 · cumulative structured records</text>
+  <rect x="48" y="94" width="535" height="286" rx="16" fill="#111b2e"/>
+  <rect x="603" y="94" width="549" height="286" rx="16" fill="#111b2e"/>
+  <text x="72" y="124" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" font-weight="700" fill="#dbeafe">Sources &amp; experiments</text>
+  <line x1="84" y1="340" x2="554" y2="340" stroke="#334155"/>
+  <line x1="84" y1="286.7" x2="554" y2="286.7" stroke="#1e293b"/>
+  <line x1="84" y1="233.3" x2="554" y2="233.3" stroke="#1e293b"/>
+  <line x1="84" y1="180" x2="554" y2="180" stroke="#1e293b"/>
+  <line x1="84" y1="126.7" x2="554" y2="126.7" stroke="#1e293b"/>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="11" fill="#64748b">
+    <text x="58" y="344">0</text><text x="52" y="290">10</text><text x="52" y="237">20</text><text x="52" y="184">30</text><text x="52" y="131">40</text>
+  </g>
+  <g>
+    <rect x="112" y="318.7" width="26" height="21.3" rx="5" fill="#22d3ee"/>
+    <rect x="142" y="254.7" width="26" height="85.3" rx="5" fill="#818cf8"/>
+    <rect x="226" y="292" width="26" height="48" rx="5" fill="#22d3ee"/>
+    <rect x="256" y="185.3" width="26" height="154.7" rx="5" fill="#818cf8"/>
+    <rect x="340" y="201.3" width="26" height="138.7" rx="5" fill="#22d3ee"/>
+    <rect x="370" y="121.3" width="26" height="218.7" rx="5" fill="#818cf8"/>
+    <rect x="454" y="148" width="26" height="192" rx="5" fill="#22d3ee"/>
+    <rect x="484" y="116" width="26" height="224" rx="5" fill="#818cf8"/>
+  </g>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="11" font-weight="700">
+    <text x="125" y="312" text-anchor="middle" fill="#67e8f9">4</text><text x="155" y="248" text-anchor="middle" fill="#c7d2fe">16</text>
+    <text x="239" y="285" text-anchor="middle" fill="#67e8f9">9</text><text x="269" y="178" text-anchor="middle" fill="#c7d2fe">29</text>
+    <text x="353" y="194" text-anchor="middle" fill="#67e8f9">26</text><text x="383" y="114" text-anchor="middle" fill="#c7d2fe">41</text>
+    <text x="467" y="141" text-anchor="middle" fill="#67e8f9">36</text><text x="497" y="109" text-anchor="middle" fill="#c7d2fe">42</text>
+  </g>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" fill="#94a3b8">
+    <text x="140" y="363" text-anchor="middle">B001</text><text x="254" y="363" text-anchor="middle">B002</text><text x="368" y="363" text-anchor="middle">B003</text><text x="482" y="363" text-anchor="middle">B004</text>
+  </g>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" fill="#cbd5e1">
+    <circle cx="408" cy="122" r="5" fill="#22d3ee"/><text x="419" y="126">Sources</text>
+    <circle cx="488" cy="122" r="5" fill="#818cf8"/><text x="499" y="126">Experiments</text>
+  </g>
+  <text x="627" y="124" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" font-weight="700" fill="#dbeafe">Measurement records</text>
+  <line x1="654" y1="340" x2="1120" y2="340" stroke="#334155"/>
+  <line x1="654" y1="280" x2="1120" y2="280" stroke="#1e293b"/>
+  <line x1="654" y1="220" x2="1120" y2="220" stroke="#1e293b"/>
+  <line x1="654" y1="160" x2="1120" y2="160" stroke="#1e293b"/>
+  <line x1="654" y1="100" x2="1120" y2="100" stroke="#1e293b"/>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="11" fill="#64748b">
+    <text x="628" y="344">0</text><text x="622" y="284">35</text><text x="622" y="224">70</text><text x="616" y="164">105</text><text x="616" y="104">140</text>
+  </g>
+  <polyline points="710,309.1 835,242.3 960,125.7 1085,115.4" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#0b1220" stroke="#fbbf24" stroke-width="4"><circle cx="710" cy="309.1" r="7"/><circle cx="835" cy="242.3" r="7"/><circle cx="960" cy="125.7" r="7"/><circle cx="1085" cy="115.4" r="7"/></g>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" font-weight="700" fill="#fde68a">
+    <text x="710" y="294" text-anchor="middle">18</text><text x="835" y="227" text-anchor="middle">57</text><text x="960" y="111" text-anchor="middle">125</text><text x="1085" y="101" text-anchor="middle">131</text>
+  </g>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" fill="#94a3b8">
+    <text x="710" y="363" text-anchor="middle">B001</text><text x="835" y="363" text-anchor="middle">B002</text><text x="960" y="363" text-anchor="middle">B003</text><text x="1085" y="363" text-anchor="middle">B004</text>
+  </g>
+  <text x="48" y="408" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" fill="#64748b">Counts are cumulative structured records from Batch 001–004 release notes.</text>
+</svg>
