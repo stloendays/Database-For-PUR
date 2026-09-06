@@ -1,0 +1,4 @@
+contrast_id,source_id,control_sample,modified_sample,microsphere_wt_pct,viscosity_ratio_vs_control,open_time_ratio_vs_control,density_ratio_vs_control,cross_peel_5min_ratio_vs_control,contrast_type,evidence_strength,notes
+US20070155859_EX1_EX2,PAT_US20070155859A1,US20070155859_EX1,US20070155859_EX2,1,1.568627451,0.636363636,0.905660377,1.335311573,controlled_additive_dose,very_high,"Same commercial base adhesive; reported intervention is 1 wt.% hollow microspheres."
+US20070155859_EX1_EX3,PAT_US20070155859A1,US20070155859_EX1,US20070155859_EX3,3,2.509803922,0.454545455,0.839622642,2.344213650,controlled_additive_dose,very_high,"Same commercial base adhesive; reported intervention is 3 wt.% hollow microspheres."
+US20070155859_EX1_EX4,PAT_US20070155859A1,US20070155859_EX1,US20070155859_EX4,5,3.764705882,0.363636364,0.773584906,2.483679525,controlled_additive_dose,very_high,"Same commercial base adhesive; reported intervention is 5 wt.% hollow microspheres."
