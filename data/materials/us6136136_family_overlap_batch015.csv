@@ -1,0 +1,18 @@
+source_id,source_example,existing_source_id,existing_record_id,overlap_status,matching_basis,action
+PAT_US6136136A,Example 8,PAT_US5599895A,HENKEL_US5599895_EX1,duplicate_family_publication,"same composition/NCO:OH/viscosity/strength panel; US6136136 reports strength in pli while Batch 008 stores source-equivalent kg/cm values",do_not_duplicate
+PAT_US6136136A,Example 9,PAT_US5599895A,HENKEL_US5599895_EX2,duplicate_family_publication,"same formulation and outcomes",do_not_duplicate
+PAT_US6136136A,Example 10,PAT_US5599895A,HENKEL_US5599895_EX3,duplicate_family_publication,"same formulation and outcomes",do_not_duplicate
+PAT_US6136136A,Example 11,PAT_US5599895A,HENKEL_US5599895_EX4,duplicate_family_publication,"same formulation and outcomes",do_not_duplicate
+PAT_US6136136A,Example 12,PAT_US5599895A,HENKEL_US5599895_EX5,duplicate_family_publication,"same formulation and outcomes",do_not_duplicate
+PAT_US6136136A,Example 13,PAT_US5599895A,HENKEL_US5599895_EX6,duplicate_family_publication,"same formulation and outcomes",do_not_duplicate
+PAT_US6136136A,Example 14,PAT_US5599895A,HENKEL_US5599895_EX7,duplicate_family_publication,"same formulation and outcomes",do_not_duplicate
+PAT_US6136136A,Example 15,PAT_US5599895A,HENKEL_US5599895_EX8,duplicate_family_publication,"same formulation and outcomes",do_not_duplicate
+PAT_US6136136A,Example 16,PAT_US5599895A,HENKEL_US5599895_EX9,duplicate_family_publication,"same formulation and outcomes",do_not_duplicate
+PAT_US6136136A,Example 17,PAT_US5599895A,HENKEL_US5599895_EX10,duplicate_family_publication,"same formulation and outcomes",do_not_duplicate
+PAT_US6136136A,Example 18,PAT_US5599895A,HENKEL_US5599895_EX11,duplicate_family_publication,"same formulation and outcomes",do_not_duplicate
+PAT_US6136136A,Example 21 A,PAT_US5599895A,HENKEL_US5599895_EX12A,duplicate_family_publication,"same preferred-formulation panel",do_not_duplicate
+PAT_US6136136A,Example 21 B,PAT_US5599895A,HENKEL_US5599895_EX12B,duplicate_family_publication,"same preferred-formulation panel",do_not_duplicate
+PAT_US6136136A,Example 21 C,PAT_US5599895A,HENKEL_US5599895_EX12C,duplicate_family_publication,"same preferred-formulation panel",do_not_duplicate
+PAT_US6136136A,Example 21 D,PAT_US5599895A,HENKEL_US5599895_EX12D,duplicate_family_publication,"same preferred-formulation panel",do_not_duplicate
+PAT_US6136136A,Example 21 E,PAT_US5599895A,HENKEL_US5599895_EX12E,duplicate_family_publication,"same preferred-formulation panel",do_not_duplicate
+PAT_US6136136A,Example 22 A,PAT_US5599895A,HENKEL_US5599895_EX13,duplicate_family_publication,"same high-molecular-weight-polyester case",do_not_duplicate
