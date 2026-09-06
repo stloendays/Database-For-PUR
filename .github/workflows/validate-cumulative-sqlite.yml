@@ -40,6 +40,30 @@ jobs:
             python "scripts/validate_batch${n}.py"
           done
 
+      - name: Inspect legacy Batch 005 release container
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          b = Path('releases/pur_core_integration_v005.zip').read_bytes()
+          sigs = {name: [] for name in ('local','central','eocd')}
+          for name, sig in [('local', b'PK\x03\x04'), ('central', b'PK\x01\x02'), ('eocd', b'PK\x05\x06')]:
+              start = 0
+              while True:
+                  i = b.find(sig, start)
+                  if i < 0: break
+                  sigs[name].append(i)
+                  start = i + 1
+          print('legacy_release_bytes=', len(b))
+          print('legacy_release_head_hex=', b[:64].hex())
+          print('legacy_release_tail_hex=', b[-64:].hex())
+          print('zip_signature_offsets=', sigs)
+          PY
+          rm -f /tmp/pur_core_recovered.zip
+          zip -FF releases/pur_core_integration_v005.zip --out /tmp/pur_core_recovered.zip || true
+          echo '--- recovered listing ---'
+          unzip -l /tmp/pur_core_recovered.zip || true
+
       - name: Build cumulative SQLite through Batch 016
         run: python scripts/build_database_v016.py --output database/pur_master.db
 
