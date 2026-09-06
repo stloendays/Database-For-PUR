@@ -1,0 +1,3 @@
+sample_id,source_id,example_id,material_or_system,elastic_modulus_mpa,stress_at_yield_mpa,elongation_operator,elongation_pct,tensile_method_id,notes
+SAMPLE1,PAT_US6365700B1,Example 1,"DYNACOLL 7361 + 4,4'-MDI prepolymer",273,9.6,>,800,US6365700_TENSILE,"Uncured-film tensile properties from Table 1A."
+CAPA640,PAT_US6365700B1,Example 1 comparator,CAPA 640,195,14.5,>,1000,US6365700_TENSILE,"Comparator from Table 1A; > qualifier retained."
