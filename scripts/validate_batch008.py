@@ -48,7 +48,6 @@ for row in forms:
     total = sum(fnum(row[c]) or 0.0 for c in component_cols)
     reported = float(row["reported_total_wt_pct"])
     assert abs(total - reported) < 1e-6, (row["record_id"], total, reported)
-    # Patent tables contain rounding to one or two decimals; accept at most 0.11 wt% closure error.
     assert abs(reported - 100.0) <= 0.11, (row["record_id"], reported)
     lo = fnum(row["viscosity_130c_pa_s_min"])
     hi = fnum(row["viscosity_130c_pa_s_max"])
@@ -79,6 +78,7 @@ required = {
     "MAT_HENKEL_PPG425", "MAT_HENKEL_TACK_BPINENE",
     "MAT_HENKEL_HC_RESIN", "MAT_HENKEL_MDI44",
 }
-assert required <= material_ids
+missing = required - material_ids
+assert not missing, ("missing required material IDs", sorted(missing), "found", sorted(material_ids))
 
 print(f"Batch 008 validation passed: {len(forms)} formulations, {len(mats)} materials, {len(contrasts)} controlled contrasts.")
