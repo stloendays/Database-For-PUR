@@ -1,0 +1,61 @@
+name: Validate cumulative SQLite
+
+on:
+  pull_request:
+    paths:
+      - "data/**"
+      - "schema/**"
+      - "scripts/**"
+      - "releases/**"
+      - ".github/workflows/validate-cumulative-sqlite.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "schema/**"
+      - "scripts/**"
+      - "releases/**"
+      - ".github/workflows/validate-cumulative-sqlite.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate staging batches 006-016
+        shell: bash
+        run: |
+          set -euo pipefail
+          for i in $(seq 6 16); do
+            n=$(printf "%03d" "$i")
+            python "scripts/validate_batch${n}.py"
+          done
+
+      - name: Build cumulative SQLite through Batch 016
+        run: python scripts/build_database_v016.py --output database/pur_master.db
+
+      - name: Validate cumulative SQLite
+        run: python scripts/validate_database_v016.py database/pur_master.db | tee database/validation_v016.txt
+
+      - name: Write database snapshot
+        run: python scripts/database_snapshot.py database/pur_master.db --output database/snapshot_v016.json
+
+      - name: Upload validated SQLite artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pur-master-batch016
+          path: |
+            database/pur_master.db
+            database/snapshot_v016.json
+            database/validation_v016.txt
+          if-no-files-found: error
+          retention-days: 30
