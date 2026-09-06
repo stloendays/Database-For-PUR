@@ -1,0 +1,12 @@
+sample_id,source_id,example_id,binder_sample_id,shore_a,tensile_strength_n_mm2,breaking_elongation_pct,stress_100_n_mm2,mechanical_method_id,specimen_prep_method_id,cure_time_days,cure_temperature_qualifier,notes,evidence_location
+MECH_E1,PAT_US20060020101A1,Example 1,E1,42,1.4,533,0.8,US20060020101_MECH,US20060020101_SEALANT_PREP,14,room_temperature,"Standardized sealant formulation based on Example 1 binder.",Table 2
+MECH_E2,PAT_US20060020101A1,Example 2,E2,54,2.7,343,1.2,US20060020101_MECH,US20060020101_SEALANT_PREP,14,room_temperature,"Standardized sealant formulation based on Example 2 binder.",Table 2
+MECH_E3,PAT_US20060020101A1,Example 3,E3,53,2.6,646,1.2,US20060020101_MECH,US20060020101_SEALANT_PREP,14,room_temperature,"Standardized sealant formulation based on Example 3 binder.",Table 2
+MECH_E4,PAT_US20060020101A1,Example 4,E4,49,2.3,610,1.1,US20060020101_MECH,US20060020101_SEALANT_PREP,14,room_temperature,"Standardized sealant formulation based on Example 4 binder.",Table 2
+MECH_E5,PAT_US20060020101A1,Example 5,E5,56,2.8,330,1.2,US20060020101_MECH,US20060020101_SEALANT_PREP,14,room_temperature,"Standardized sealant formulation based on Example 5 binder.",Table 2
+MECH_E6,PAT_US20060020101A1,"Example 6 stage 2",E6_STAGE2,52,3.7,606,1.0,US20060020101_MECH,US20060020101_SEALANT_PREP,14,room_temperature,"Mechanical specimen uses final second-stage binder only.",Table 2
+MECH_C1,PAT_US20060020101A1,Comparative Example 1,C1,45,1.2,458,0.8,US20060020101_MECH,US20060020101_SEALANT_PREP,14,room_temperature,"Standardized sealant formulation based on Comparative Example 1 binder.",Table 2
+MECH_C2,PAT_US20060020101A1,Comparative Example 2,C2,54,2.1,248,1.2,US20060020101_MECH,US20060020101_SEALANT_PREP,14,room_temperature,"Standardized sealant formulation based on Comparative Example 2 binder.",Table 2
+MECH_C3,PAT_US20060020101A1,Comparative Example 3,C3_POST,51,3.5,626,1.1,US20060020101_MECH,US20060020101_SEALANT_PREP,14,room_temperature,"Uses final Mesamoll-containing Comparative Example 3 binder.",Table 2
+MECH_C7,PAT_US20060020101A1,Comparative Example 7,C7,82,2.5,21,,US20060020101_MECH,US20060020101_SEALANT_PREP,14,room_temperature,"100% stress reported not measurable; stored null rather than fabricated.",Table 2
+MECH_C8,PAT_US20060020101A1,Comparative Example 8,C8,53,1.2,70,,US20060020101_MECH,US20060020101_SEALANT_PREP,14,room_temperature,"100% stress reported not measurable; stored null rather than fabricated.",Table 2
