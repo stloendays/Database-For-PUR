@@ -1,0 +1,2 @@
+source_id,balanced_lowA_eta130,balanced_highA_eta130,drich_lowA_eta130,drich_highA_eta130,balanced_highA_lowA_ratio,drich_highA_lowA_ratio,ratio_of_ratios,difference_of_differences_pa_s,multiplicative_no_interaction_expected_drich_highA_pa_s,observed_vs_multiplicative_expected_fraction,inference_limit
+PAT_US5932680A,26.0,43.0,22.0,24.0,1.6538461538461537,1.0909090909090908,1.516025641025641,15.0,36.38461538461538,0.6596194503171249,Effect-size interaction only; patent provides no replicate variance for these four points.

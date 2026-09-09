@@ -1,0 +1,2 @@
+n_high_quality_samples,spearman_rho_rank_45_vs_75,kendall_tau_rank_45_vs_75,pairwise_inversions_45_vs_75,pairwise_pairs_total,pairwise_inversion_fraction,DP_matched_pairs,DP_crossovers_within_measured_range
+37,0.9589853010905641,0.8708708708708709,43,666,0.06456456456456457,12,6

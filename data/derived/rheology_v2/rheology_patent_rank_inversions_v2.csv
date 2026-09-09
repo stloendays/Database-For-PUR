@@ -1,0 +1,2 @@
+source_id,temperature_1_c,temperature_2_c,sample_a,sample_b,eta_t1_a,eta_t1_b,eta_t2_a,eta_t2_b,direct_measured_rank_inversion,fitted_crossover_temperature_c,crossover_note
+PAT_US5932680A,90.0,110.0,Example 1,Example 4,190.0,98.0,55.0,60.0,True,109.45202702328402,Crossover is interpolated from Arrhenius fits; inversion itself is directly observed from reported point values.
