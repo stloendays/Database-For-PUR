@@ -46,6 +46,12 @@ jobs:
       - name: Build cumulative v2 database
         run: python scripts/build_database_v2.py --output database/pur_master_v2.db
 
+      - name: Import historical recovery provenance
+        run: |
+          python scripts/import_recovery_status_v2.py \
+            --db database/pur_master_v2.db \
+            --cn-release releases/cn_seed_batch_004_operational.zip
+
       - name: Build core RAG FTS index
         run: python scripts/build_rag_fts.py database/pur_master_v2.db
 
@@ -54,6 +60,9 @@ jobs:
 
       - name: Validate cumulative v2 database
         run: python scripts/validate_database_v2.py database/pur_master_v2.db
+
+      - name: Validate recovery metadata
+        run: python scripts/validate_recovery_status_v2.py --db database/pur_master_v2.db
 
       - name: Export ML and Agent views
         run: python scripts/export_ml_agent_v2.py --db database/pur_master_v2.db --out-dir exports/v2
