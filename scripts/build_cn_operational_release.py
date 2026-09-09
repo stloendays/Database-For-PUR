@@ -132,8 +132,14 @@ def add_patent_stubs(
     for src in source_rows:
         source_id = (src.get("source_id") or "").strip()
         source_type = (src.get("source_type") or "").strip().lower()
+        is_patent = source_type.startswith("patent") or source_id.startswith("CN_PAT_")
         pub = (src.get("publication_number") or src.get("patent_number") or "").strip()
-        if source_type != "patent" or not source_id or not pub or source_id in existing_sources:
+        # The historical source key itself encodes the official publication number,
+        # e.g. CN_PAT_CN111217992A. This fallback is identity reconstruction only;
+        # no bibliographic or experimental metadata is inferred from it.
+        if not pub and source_id.startswith("CN_PAT_"):
+            pub = source_id.removeprefix("CN_PAT_")
+        if not is_patent or not source_id or not pub or source_id in existing_sources:
             continue
         pid = f"PAT_{pub}"
         if pid in existing_ids:
