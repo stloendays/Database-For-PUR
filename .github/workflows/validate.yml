@@ -20,6 +20,14 @@ jobs:
       - name: Validate staging batches
         run: python scripts/validate_all_staging.py
 
+      - name: Audit release archive signatures
+        run: |
+          file releases/*.zip
+          echo 'pur_core_integration_v005.zip:'
+          xxd -l 32 releases/pur_core_integration_v005.zip
+          echo 'cn_seed_batch_004.zip:'
+          xxd -l 32 releases/cn_seed_batch_004.zip
+
       - name: Build cumulative v2 database
         run: python scripts/build_database_v2.py --output database/pur_master_v2.db
 
