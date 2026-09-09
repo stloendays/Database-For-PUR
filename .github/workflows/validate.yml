@@ -20,6 +20,11 @@ jobs:
       - name: Validate staging batches
         run: python scripts/validate_all_staging.py
 
+      - name: Restore canonical legacy viscosity curves
+        run: |
+          python scripts/restore_viscosity_curves.py \
+            --output data/legacy/viscosity_curves.csv.gz
+
       - name: Rebuild canonical Batch 005 integration release
         run: |
           python scripts/rebuild_integration_release.py \
