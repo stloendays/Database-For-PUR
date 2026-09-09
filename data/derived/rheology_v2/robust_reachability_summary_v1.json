@@ -3,6 +3,8 @@
   "n_strict_robust_feasible": 0,
   "strict_robust_reachable": false,
   "definition": "all actual lower/upper uncertainty bounds must lie inside all preferred windows; ratio uses its published compounded lower/upper interval rather than a single eta radius",
+  "ratio_bottleneck_count": 117,
+  "ratio_bottleneck_fraction": 1.0,
   "closest_by_window_expansion_candidate": "WO_INV_0359",
   "minimum_preferred_halfwidth_expansion_factor": 1.4856260741783724,
   "minimum_halfwidth_expansion_percent": 48.56260741783724,
