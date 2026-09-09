@@ -31,6 +31,12 @@ jobs:
             --output releases/pur_core_integration_v006_rebuilt.zip
           python -m zipfile -t releases/pur_core_integration_v006_rebuilt.zip
 
+      - name: Rebuild canonical Chinese cumulative release
+        run: |
+          python scripts/rebuild_cn_release.py \
+            --output releases/cn_seed_batch_004_rebuilt.zip
+          python -m zipfile -t releases/cn_seed_batch_004_rebuilt.zip
+
       - name: Build cumulative v2 database
         run: python scripts/build_database_v2.py --output database/pur_master_v2.db
 
@@ -57,3 +63,4 @@ jobs:
             database/pur_master_v2.db
             exports/v2/
             releases/pur_core_integration_v006_rebuilt.zip
+            releases/cn_seed_batch_004_rebuilt.zip
