@@ -20,19 +20,11 @@ jobs:
       - name: Validate staging batches
         run: python scripts/validate_all_staging.py
 
-      - name: Audit release archive signatures
+      - name: Rebuild canonical Batch 005 integration release
         run: |
-          file releases/*.zip
-          echo 'pur_core_integration_v005.zip:'
-          xxd -l 32 releases/pur_core_integration_v005.zip
-          echo 'cn_seed_batch_004.zip:'
-          xxd -l 32 releases/cn_seed_batch_004.zip
-
-      - name: Recover historical integration ZIP
-        run: |
-          python scripts/recover_local_zip.py \
-            releases/pur_core_integration_v005.zip \
-            releases/pur_core_integration_v005_recovered.zip
+          python scripts/rebuild_integration_release.py \
+            --output releases/pur_core_integration_v006_rebuilt.zip
+          python -m zipfile -t releases/pur_core_integration_v006_rebuilt.zip
 
       - name: Build cumulative v2 database
         run: python scripts/build_database_v2.py --output database/pur_master_v2.db
@@ -59,3 +51,4 @@ jobs:
           path: |
             database/pur_master_v2.db
             exports/v2/
+            releases/pur_core_integration_v006_rebuilt.zip
