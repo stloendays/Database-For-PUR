@@ -20,14 +20,28 @@ jobs:
       - name: Validate staging batches
         run: python scripts/validate_all_staging.py
 
-      - name: Build cumulative master database
-        run: python scripts/build_database.py --output database/pur_master.db
+      - name: Build cumulative v2 database
+        run: python scripts/build_database_v2.py --output database/pur_master_v2.db
 
-      - name: Build RAG FTS index
-        run: python scripts/build_rag_fts.py database/pur_master.db
+      - name: Build core RAG FTS index
+        run: python scripts/build_rag_fts.py database/pur_master_v2.db
 
-      - name: Validate cumulative database
-        run: python scripts/validate_database.py database/pur_master.db
+      - name: Extend RAG with v2 scientific relationships
+        run: python scripts/build_rag_v2.py database/pur_master_v2.db
 
-      - name: Print health report
-        run: python scripts/database_health_report.py --db database/pur_master.db
+      - name: Validate cumulative v2 database
+        run: python scripts/validate_database_v2.py database/pur_master_v2.db
+
+      - name: Export ML and Agent views
+        run: python scripts/export_ml_agent_v2.py --db database/pur_master_v2.db --out-dir exports/v2
+
+      - name: Print v2 health report
+        run: python scripts/database_health_report_v2.py --db database/pur_master_v2.db
+
+      - name: Upload validated v2 artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pur-database-v2
+          path: |
+            database/pur_master_v2.db
+            exports/v2/
