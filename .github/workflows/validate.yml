@@ -28,6 +28,12 @@ jobs:
           echo 'cn_seed_batch_004.zip:'
           xxd -l 32 releases/cn_seed_batch_004.zip
 
+      - name: Recover historical integration ZIP
+        run: |
+          python scripts/recover_local_zip.py \
+            releases/pur_core_integration_v005.zip \
+            releases/pur_core_integration_v005_recovered.zip
+
       - name: Build cumulative v2 database
         run: python scripts/build_database_v2.py --output database/pur_master_v2.db
 
