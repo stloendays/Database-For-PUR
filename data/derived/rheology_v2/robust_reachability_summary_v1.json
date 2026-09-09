@@ -1,0 +1,17 @@
+{
+  "n_nominal_feasible": 117,
+  "n_strict_robust_feasible": 0,
+  "strict_robust_reachable": false,
+  "definition": "all actual lower/upper uncertainty bounds must lie inside all preferred windows; ratio uses its published compounded lower/upper interval rather than a single eta radius",
+  "closest_by_window_expansion_candidate": "WO_INV_0359",
+  "minimum_preferred_halfwidth_expansion_factor": 1.4856260741783724,
+  "minimum_halfwidth_expansion_percent": 48.56260741783724,
+  "closest_by_uniform_uncertainty_shrink_candidate": "WO_INV_0374",
+  "maximum_allowed_uniform_uncertainty_scale": 0.6559962051615148,
+  "minimum_uniform_uncertainty_reduction_percent": 34.40037948384852,
+  "WO_INV_0420_robust_lambda": 1.637244332324047,
+  "WO_INV_0420_allowed_uncertainty_scale": 0.587329639629706,
+  "WO_INV_0420_required_uncertainty_reduction_percent": 41.267036037029406,
+  "WO_INV_0420_bottleneck": "ratio",
+  "claim_boundary": "Algorithmic robustness reachability in PUR_SIM_V1 only; not physical experimental uncertainty."
+}

@@ -23,3 +23,15 @@ This derived layer turns the normalized PUR database into a source-traceable rhe
 The old eta80 + eta120 + eta80/eta120 objective triple-counts a two-degree-of-freedom temperature response. The new `PUR-RHEOLOGY-STATE V1` uses two independent normalized coordinates: eta120 and thermal sensitivity (eta80/eta120, equivalently an apparent-Ea coordinate), while eta80 remains a hard processing-window gate.
 
 On the frozen 928-candidate `PUR_SIM_V1` benchmark, the property-state optimum is WO_INV_0419 (PPG700/PPG1000 = 50/50, NCO/OH = 1.7), but its MDI fraction is 34.06%, below the frozen 35% floor. Backward analysis gives a continuous feasibility threshold of NCO/OH = 1.77198, so the first reachable 0.1-grid state is NCO/OH = 1.8, WO_INV_0420. `PUR_SIM_V1` remains synthetic benchmark truth, not experimental evidence.
+
+## Strict robustness reachability audit
+
+The written strict robust gate was re-evaluated on the complete response table using the **actual lower/upper intervals for each response**, including the compounded interval for η80/η120. The result is not a robust winner: it is an **unreachable robust target**.
+
+- Nominal-feasible candidates: **117**.
+- Strict robust-feasible candidates: **0**.
+- Closest candidate by relaxing preferred-window half-width: `WO_INV_0359`, requiring a **1.486×** half-width, i.e. **+48.56%**.
+- Best candidate under a uniform uncertainty-shrink thought experiment: `WO_INV_0374`, still requiring at least a **34.40%** reduction in uncertainty.
+- Prospective target `WO_INV_0420` would require about a **41.27%** uncertainty reduction; its limiting coordinate is the **viscosity ratio / thermal-sensitivity interval**.
+
+This audit is algorithmic and belongs to `PUR_SIM_V1`. It is not a statement about physical experimental uncertainty. The key decision rule is: **when the strict robust set is empty, report the reachability gap rather than assigning an artificial L2 winner.**
