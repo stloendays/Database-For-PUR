@@ -31,6 +31,9 @@ jobs:
             --output releases/pur_core_integration_v006_rebuilt.zip
           python -m zipfile -t releases/pur_core_integration_v006_rebuilt.zip
 
+      - name: Audit recoverable Chinese relational rows
+        run: python scripts/audit_cn_recovery.py
+
       - name: Salvage and rebuild canonical Chinese cumulative release
         run: |
           python scripts/rebuild_cn_release_salvage.py \
