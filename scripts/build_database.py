@@ -3,14 +3,18 @@
 
 Current build layers:
   1. legacy source metadata from data/legacy/sources.csv
-  2. legacy + Batch 005 relational payload from releases/pur_core_integration_v005.zip
+  2. legacy + Batch 005 relational payload from the latest clean integration release
   3. cumulative Chinese corpus from releases/cn_seed_batch_004.zip (or latest)
   4. terminology seed from data/master/terminology_seed.csv
+
+Rows are merged with SQLite UPSERT semantics. `INSERT OR REPLACE` is intentionally
+not used because REPLACE deletes the existing parent row before inserting the new
+row and can therefore violate foreign keys when a source/material is already cited.
 
 Usage:
     python scripts/build_database.py --output database/pur_master.db
     python scripts/build_database.py --cn-release releases/cn_seed_batch_004.zip
-    python scripts/build_database.py --integration-release releases/pur_core_integration_v005.zip
+    python scripts/build_database.py --integration-release releases/pur_core_integration_v006_rebuilt.zip
 """
 from __future__ import annotations
 
@@ -66,13 +70,29 @@ def import_rows(
     rows = list(rows)
     if not rows:
         return 0
-    table_cols = {r[1] for r in conn.execute(f'PRAGMA table_info("{table}")')}
+    table_info = list(conn.execute(f'PRAGMA table_info("{table}")'))
+    table_cols = {r[1] for r in table_info}
     cols = [c for c in (fieldnames or []) if c in table_cols]
     if not cols:
         return 0
+
     placeholders = ",".join("?" for _ in cols)
     quoted_cols = ",".join(f'"{c}"' for c in cols)
-    sql = f'INSERT OR REPLACE INTO "{table}" ({quoted_cols}) VALUES ({placeholders})'
+
+    # SQLite REPLACE is delete+insert and is unsafe for referenced parent rows.
+    # Use an in-place UPSERT instead. With no conflict target, SQLite applies this
+    # to PRIMARY KEY / UNIQUE conflicts while preserving the existing row identity.
+    pk_cols = {r[1] for r in table_info if r[5]}
+    update_cols = [c for c in cols if c not in pk_cols]
+    if update_cols:
+        assignments = ",".join(f'"{c}"=excluded."{c}"' for c in update_cols)
+        sql = (
+            f'INSERT INTO "{table}" ({quoted_cols}) VALUES ({placeholders}) '
+            f'ON CONFLICT DO UPDATE SET {assignments}'
+        )
+    else:
+        sql = f'INSERT OR IGNORE INTO "{table}" ({quoted_cols}) VALUES ({placeholders})'
+
     conn.executemany(sql, [[row.get(c) or None for c in cols] for row in rows])
     return len(rows)
 
@@ -117,7 +137,7 @@ def import_legacy_sources(conn: sqlite3.Connection, path: Path) -> int:
     if not path.exists():
         return 0
     with path.open("r", encoding="utf-8-sig", newline="") as fh:
-        rows = []
+        normalized_rows = []
         for row in csv.DictReader(fh):
             identifier = (row.get("doi_or_patent") or "").strip()
             source_type = (row.get("source_type") or "").strip()
@@ -128,7 +148,7 @@ def import_legacy_sources(conn: sqlite3.Connection, path: Path) -> int:
                 notes.append(f"Relevance: {row['relevance']}")
             if identifier and not doi and not patent_number:
                 notes.append(f"Legacy identifier: {identifier}")
-            rows.append(
+            normalized_rows.append(
                 {
                     "source_id": row.get("source_id"),
                     "source_type": source_type,
@@ -143,7 +163,7 @@ def import_legacy_sources(conn: sqlite3.Connection, path: Path) -> int:
                     "notes": " | ".join(notes),
                 }
             )
-    return import_rows(conn, rows[0].keys() if rows else [], rows, "sources")
+    return import_rows(conn, normalized_rows[0].keys() if normalized_rows else [], normalized_rows, "sources")
 
 
 def main() -> None:
@@ -158,11 +178,7 @@ def main() -> None:
     if output.exists():
         output.unlink()
 
-    cn_release = (
-        ROOT / args.cn_release
-        if args.cn_release
-        else latest_release("cn_seed_batch_*.zip")
-    )
+    cn_release = ROOT / args.cn_release if args.cn_release else latest_release("cn_seed_batch_*.zip")
     integration_release = (
         ROOT / args.integration_release
         if args.integration_release
