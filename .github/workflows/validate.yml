@@ -34,11 +34,11 @@ jobs:
       - name: Audit recoverable Chinese relational rows
         run: python scripts/audit_cn_recovery.py
 
-      - name: Salvage and rebuild canonical Chinese cumulative release
+      - name: Build FK-closed Chinese operational recovery release
         run: |
-          python scripts/rebuild_cn_release_salvage.py \
-            --output releases/cn_seed_batch_004_rebuilt.zip
-          python -m zipfile -t releases/cn_seed_batch_004_rebuilt.zip
+          python scripts/build_cn_operational_release.py \
+            --output releases/cn_seed_batch_004_operational.zip
+          python -m zipfile -t releases/cn_seed_batch_004_operational.zip
 
       - name: Build cumulative v2 database
         run: python scripts/build_database_v2.py --output database/pur_master_v2.db
@@ -66,4 +66,4 @@ jobs:
             database/pur_master_v2.db
             exports/v2/
             releases/pur_core_integration_v006_rebuilt.zip
-            releases/cn_seed_batch_004_rebuilt.zip
+            releases/cn_seed_batch_004_operational.zip
