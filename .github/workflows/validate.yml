@@ -20,6 +20,9 @@ jobs:
       - name: Validate staging batches
         run: python scripts/validate_all_staging.py
 
+      - name: Audit staging CSV shapes
+        run: python scripts/audit_staging_csv_shape.py
+
       - name: Restore canonical legacy viscosity curves
         run: |
           python scripts/restore_viscosity_curves.py \
