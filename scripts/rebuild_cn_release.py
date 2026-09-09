@@ -2,8 +2,8 @@
 """Rebuild the cumulative Chinese PUR release from recoverable seed archives.
 
 Historical ``cn_seed_batch_*.zip`` files may have a damaged or truncated central
-ZIP directory even when their local file entries are intact.  This builder does
-not trust the archive container.  It:
+ZIP directory even when their local file entries are intact. This builder does
+not trust the archive container. It:
 
 1. reads every seed archive with ``zipfile`` when possible;
 2. otherwise recovers complete local entries and validates size + CRC32;
@@ -13,7 +13,7 @@ not trust the archive container.  It:
 6. requires the Batch 004 documented cumulative row counts; and
 7. writes a deterministic, clean ZIP with a valid central directory.
 
-No missing numerical rows are invented.  If the documented Batch 004 totals
+No missing numerical rows are invented. If the documented Batch 004 totals
 cannot be recovered exactly, the script fails instead of silently degrading the
 Chinese corpus.
 """
@@ -61,7 +61,14 @@ def inflate(method: int, payload: bytes) -> bytes:
 
 
 def recover_local_entries(path: Path) -> dict[str, bytes]:
-    """Recover every complete local entry from a ZIP with a broken central directory."""
+    """Recover every complete local entry before the first damaged ZIP member.
+
+    A damaged seed archive is treated as a prefix container: every entry admitted
+    here has passed decompression, uncompressed-size and CRC32 checks. The first
+    incomplete/corrupt member terminates recovery for that archive, but does not
+    invalidate already verified entries because later seed archives may contain
+    cumulative replacements.
+    """
     data = path.read_bytes()
     out: dict[str, bytes] = {}
     pos = 0
@@ -88,33 +95,38 @@ def recover_local_entries(path: Path) -> dict[str, bytes]:
         ) = struct.unpack_from("<HHHHHIIIHH", data, pos + 4)
         _ = version
 
-        # The committed seed archives were created with known local sizes.  If a
-        # future archive uses streaming data descriptors, fail explicitly rather
-        # than guessing entry boundaries.
         if flags & 0x08:
-            raise ValueError(f"{path.name}: data-descriptor entry at byte {pos} is unsupported")
+            print(f"stop {path.name}: unsupported data-descriptor entry at byte {pos}")
+            break
 
         name_start = pos + 30
         name_end = name_start + name_len
         payload_start = name_end + extra_len
         payload_end = payload_start + compressed_size
         if payload_end > len(data):
-            # A truncated tail entry is not recoverable; all earlier entries were
-            # already CRC-checked and can still be used alongside other seed files.
+            print(f"stop {path.name}: truncated payload at byte {pos}")
             break
 
         name = decode_name(data[name_start:name_end], flags)
         payload = data[payload_start:payload_end]
-        raw = inflate(method, payload)
+        try:
+            raw = inflate(method, payload)
+        except (ValueError, zlib.error) as exc:
+            print(f"stop {path.name}:{name}: decompression failed: {exc}")
+            break
         if len(raw) != uncompressed_size:
-            raise ValueError(
-                f"{path.name}:{name}: size mismatch {len(raw)} != {uncompressed_size}"
+            print(
+                f"stop {path.name}:{name}: size mismatch "
+                f"{len(raw)} != {uncompressed_size}"
             )
+            break
         crc32_actual = zlib.crc32(raw) & 0xFFFFFFFF
         if crc32_actual != crc32_expected:
-            raise ValueError(
-                f"{path.name}:{name}: CRC mismatch {crc32_actual:08x} != {crc32_expected:08x}"
+            print(
+                f"stop {path.name}:{name}: CRC mismatch "
+                f"{crc32_actual:08x} != {crc32_expected:08x}"
             )
+            break
         if not name.endswith("/"):
             out[name] = raw
         pos = payload_end
@@ -220,7 +232,7 @@ def main() -> None:
             filename = Path(member).name
             try:
                 nrows = count_rows(raw)
-            except Exception as exc:  # malformed candidate is never selected
+            except Exception as exc:
                 print(f"skip malformed candidate {archive.name}::{member}: {exc}")
                 continue
             candidates[filename].append((nrows, archive.name, raw))
@@ -232,9 +244,11 @@ def main() -> None:
         canonical[filename] = raw
         selected_from[filename] = f"{source} ({nrows} rows)"
 
-    # sources.csv can be deterministically rebuilt from committed Batch 002
-    # cumulative data plus Batch 003/004 additions.
-    source_base = (CN_DIR / "sources.csv").read_bytes() if (CN_DIR / "sources.csv").exists() else canonical.get("sources.csv")
+    source_base = (
+        (CN_DIR / "sources.csv").read_bytes()
+        if (CN_DIR / "sources.csv").exists()
+        else canonical.get("sources.csv")
+    )
     source_merged = merge_csv(
         source_base,
         [CN_DIR / "batch003_sources.csv", CN_DIR / "batch004_sources.csv"],
@@ -244,8 +258,6 @@ def main() -> None:
         canonical["sources.csv"] = source_merged
         selected_from["sources.csv"] = "committed Batch 002 base + Batch 003/004 source increments"
 
-    # measurements.csv is similarly recoverable when a prior cumulative table is
-    # present in the seed archives and the committed Batch 003/004 increments exist.
     measurement_merged = merge_csv(
         canonical.get("measurements.csv"),
         [CN_DIR / "batch003_measurements.csv", CN_DIR / "batch004_measurements.csv"],
@@ -255,7 +267,6 @@ def main() -> None:
         canonical["measurements.csv"] = measurement_merged
         selected_from["measurements.csv"] = "best recovered cumulative table + committed Batch 003/004 measurement increments"
 
-    # These two committed files are explicitly cumulative at Batch 004.
     for filename in ("thesis_index.csv", "standard_index.csv"):
         direct = CN_DIR / filename
         if direct.exists():
@@ -278,14 +289,21 @@ def main() -> None:
             print(f"  archive {name:<24} {mode:<24} entries={nentries}")
         for filename in sorted(canonical):
             try:
-                print(f"  candidate {filename:<30} rows={count_rows(canonical[filename]):>4} from {selected_from.get(filename, 'unknown')}")
+                print(
+                    f"  candidate {filename:<30} rows={count_rows(canonical[filename]):>4} "
+                    f"from {selected_from.get(filename, 'unknown')}"
+                )
             except Exception:
                 pass
         for failure in failures:
             print(f"  ERROR {failure}")
         raise SystemExit(1)
 
-    files = {f"data/cn/{filename}": raw for filename, raw in canonical.items() if filename.endswith(".csv")}
+    files = {
+        f"data/cn/{filename}": raw
+        for filename, raw in canonical.items()
+        if filename.endswith(".csv")
+    }
     for md in ("BATCH_002.md", "BATCH_003.md", "BATCH_004.md"):
         path = CN_DIR / md
         if path.exists():
@@ -301,7 +319,10 @@ def main() -> None:
     for name, mode, nentries in recovery_modes:
         print(f"  archive {name:<24} {mode:<24} entries={nentries}")
     for filename, expected in EXPECTED_ROWS.items():
-        print(f"  {filename:<30} {expected:>4} rows <- {selected_from.get(filename, 'recovered seed archive')}")
+        print(
+            f"  {filename:<30} {expected:>4} rows <- "
+            f"{selected_from.get(filename, 'recovered seed archive')}"
+        )
     print(f"  output: {output.relative_to(ROOT)}")
 
 
