@@ -1,0 +1,33 @@
+name: Validate PUR database
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate staging batches
+        run: python scripts/validate_all_staging.py
+
+      - name: Build cumulative master database
+        run: python scripts/build_database.py --output database/pur_master.db
+
+      - name: Build RAG FTS index
+        run: python scripts/build_rag_fts.py database/pur_master.db
+
+      - name: Validate cumulative database
+        run: python scripts/validate_database.py database/pur_master.db
+
+      - name: Print health report
+        run: python scripts/database_health_report.py --db database/pur_master.db
